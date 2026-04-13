@@ -290,4 +290,18 @@ TRAIL.groups.forEach(g=>{
     link.target='_blank';
     link.textContent=a.t;
     const seed=(a.t.charCodeAt(0)+a.t.length+i)%6;
-    link.style.opacity=(0.4+seed*0.12).toFixed(2
+    link.style.opacity=(0.4+seed*0.12).toFixed(2);
+    body.appendChild(link);
+    if(i<g.t.length-1){
+      const d=document.createElement('span');
+      d.className='d';
+      body.appendChild(d);
+    }
+  });
+
+  grp.appendChild(body);
+  bs.appendChild(grp);
+});
+</script>
+</body>
+</html>
