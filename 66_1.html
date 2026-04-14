@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -276,11 +277,43 @@
       .footnotes { display: none; }
     }
     @media (max-width: 860px) {
-      :root { --pad: 24px; }
-      .back-link { padding-left: 24px; }
-      .page-wrap { padding-right: 24px; }
-      .pull { margin: 2.4em -8px; }
-      .citation { margin-left: 0.8em; padding-left: 1em; }
+      /* Prevent horizontal scroll from full-bleed image trick */
+      html, body { overflow-x: hidden; }
+
+      :root { --pad: 20px; }
+
+      .back-link { padding-left: 20px; }
+
+      .page-wrap {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      /* Title needs more vw punch on small screens */
+      .article-title {
+        font-size: clamp(1.9rem, 8vw, 2.8rem);
+      }
+
+      /* Tighten vertical rhythm — 6vh is a lot on a phone */
+      .article-header { padding: 4vh 0 2vh; }
+      .article-header-rule { margin-bottom: 4vh; }
+      .section-break { margin: 4vh 0; }
+      .full-bleed-wrap { margin: 5vh 0; }
+
+      /* Pull quote — no negative bleed on mobile */
+      .pull {
+        margin: 2em 0;
+        font-size: clamp(1.1rem, 5vw, 1.4rem);
+      }
+
+      /* Citation indent tighter */
+      .citation { margin-left: 0.6em; padding-left: 0.9em; }
+
+      /* Footnotes list readable on small screens */
+      .footnotes li {
+        font-size: 0.8rem;
+        line-height: 1.6;
+      }
     }
     @media print {
       /* Hide dynamically placed margin notes — they overlap images in print */
