@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Self, the Other, and the Meeting Beyond Both — Yoni Brown</title>
+  <meta name="description" content="Notes on Hemshech Samach Vov, Maamer 1. On creation, tzimtzum, and why G-d desires a dirah b'tachtonim.">
+  <meta name="author" content="Yoni Brown">
+  <meta property="og:title" content="The Self, the Other, and the Meeting Beyond Both — Yoni Brown">
+  <meta property="og:description" content="Notes on Hemshech Samach Vov, Maamer 1.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://yonibrown.com/the-self-the-other.html">
+  <link rel="canonical" href="https://yonibrown.com/the-self-the-other.html">
+  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper: #FDFBF7;
+      --ink:   #2A2826;
+      --stone: #8C8478;
+      --faint: rgba(42,40,38,0.10);
+      --rule:  rgba(42,40,38,0.12);
+      --col:   620px;
+      --gap:   96px;
+      --note:  210px;
+      --pad:   48px;
+    }
+
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 400;
+    }
+
+    .bh {
+      text-align: center;
+      padding: 18px 0 0;
+      font-size: 0.55rem;
+      letter-spacing: 0.06em;
+      color: rgba(42,40,38,0.12);
+      user-select: none;
+    }
+
+    .back-link {
+      display: block;
+      padding: 14px var(--pad) 0;
+      font-size: clamp(0.72rem, 0.85vw, 0.82rem);
+      font-weight: 400;
+      color: var(--stone);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--ink); }
+
+    /* Page wrap: text column + right margin for notes */
+    .page-wrap {
+      max-width: calc(var(--pad) + var(--col) + var(--gap) + var(--note) + 32px);
+      margin: 0 auto;
+      padding-left: var(--pad);
+      padding-right: 32px;
+      position: relative;
+    }
+
+    .article-header {
+      max-width: var(--col);
+      padding: 6vh 0 3vh;
+    }
+
+    .article-title {
+      font-family: 'Zodiak', serif;
+      font-weight: 500;
+      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+    }
+
+    .article-subtitle {
+      font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--stone);
+      margin-bottom: 1.2rem;
+    }
+
+    .article-meta {
+      font-size: clamp(0.72rem, 0.85vw, 0.82rem);
+      font-weight: 400;
+      color: var(--stone);
+      letter-spacing: 0.03em;
+    }
+
+    .article-header-rule {
+      max-width: var(--col);
+      margin-bottom: 6vh;
+    }
+    .article-header-rule hr { border: none; border-top: 0.5px solid var(--rule); }
+
+    .article-body {
+      max-width: var(--col);
+      font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    .article-body p { margin-top: 1.45em; }
+    .article-body p:first-child { margin-top: 0; }
+
+    .article-body h2 {
+      font-family: 'Zodiak', serif;
+      font-weight: 500;
+      font-size: clamp(1.2rem, 1.5vw, 1.45rem);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-top: 2.8em;
+      margin-bottom: 0.6em;
+    }
+
+    .article-body a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 2px;
+      transition: text-decoration-color 0.2s;
+    }
+    .article-body a:hover { text-decoration-color: var(--ink); }
+
+    /* Introductory preface — smaller, lighter, separated from main body */
+    .article-intro {
+      max-width: var(--col);
+      font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+      font-weight: 300;
+      line-height: 1.78;
+      color: var(--ink);
+      padding-bottom: 5vh;
+      margin-bottom: 5vh;
+      border-bottom: 0.5px solid var(--rule);
+    }
+    .article-intro p { margin-top: 1.35em; }
+    .article-intro p:first-child { margin-top: 0; }
+
+    .pull {
+      font-family: 'Zodiak', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 2vw, 1.75rem);
+      line-height: 1.45;
+      text-align: center;
+      padding: 2.2em 0;
+      margin: 2.4em -32px;
+      border-top: 0.5px solid var(--rule);
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .citation {
+      border-left: 0.5px solid var(--stone);
+      margin: 1.8em 0 1.8em 1.4em;
+      padding-left: 1.4em;
+    }
+
+    .section-break {
+      max-width: var(--col);
+      margin: 5vh 0;
+      border: none;
+      border-top: 0.5px solid var(--rule);
+    }
+
+    .full-bleed-wrap {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 8vh 0;
+      height: clamp(220px, 45vh, 480px);
+      overflow: hidden;
+    }
+    .full-bleed-wrap img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Footnote superscripts in text */
+    .fn-ref {
+      font-size: 0.62em;
+      font-weight: 500;
+      color: var(--stone);
+      text-decoration: none;
+      vertical-align: super;
+      line-height: 0;
+      transition: color 0.2s;
+    }
+    .fn-ref:hover { color: var(--ink); }
+
+    /* Margin notes — positioned by JS, hidden until placed */
+    .margin-note {
+      display: none;
+      position: absolute;
+      left: calc(var(--pad) + var(--col) + var(--gap));
+      width: var(--note);
+      font-size: clamp(0.72rem, 0.85vw, 0.8rem);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--stone);
+    }
+    .margin-note em { font-style: italic; }
+    .margin-note-num {
+      display: inline;
+      font-size: 0.72em;
+      font-weight: 500;
+      color: rgba(42,40,38,0.35);
+      margin-right: 0.3em;
+      vertical-align: super;
+      line-height: 0;
+    }
+
+    /* Footnotes section — mobile fallback, hidden on desktop */
+    .footnotes {
+      max-width: var(--col);
+      margin-top: 8vh;
+      padding-top: 3vh;
+      border-top: 0.5px solid var(--rule);
+    }
+    .footnotes-label {
+      font-size: clamp(0.58rem, 0.65vw, 0.7rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--stone);
+      margin-bottom: 1.4em;
+    }
+    .footnotes ol { list-style: none; padding: 0; counter-reset: fn -1; }
+    .footnotes li {
+      counter-increment: fn;
+      font-size: clamp(0.68rem, 0.8vw, 0.75rem);
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--stone);
+      margin-bottom: 0.9em;
+      padding-left: 1.6em;
+      position: relative;
+    }
+    .footnotes li::before { content: counter(fn) "."; position: absolute; left: 0; font-weight: 500; }
+    .footnotes li em { font-style: italic; }
+    .fn-back { color: var(--stone); text-decoration: none; margin-left: 0.3em; opacity: 0.5; }
+    .fn-back:hover { opacity: 1; }
+
+    .article-footer {
+      max-width: var(--col);
+      margin-top: 6vh;
+      margin-bottom: 10vh;
+      padding-top: 3vh;
+      border-top: 0.5px solid var(--rule);
+      font-size: clamp(0.72rem, 0.85vw, 0.82rem);
+      color: var(--stone);
+    }
+    .article-footer a {
+      color: var(--stone);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 2px;
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+    .article-footer a:hover { color: var(--ink); text-decoration-color: var(--ink); }
+
+    @media (min-width: 861px) {
+      .footnotes { display: none; }
+    }
+    @media (max-width: 860px) {
+      :root { --pad: 24px; }
+      .back-link { padding-left: 24px; }
+      .page-wrap { padding-right: 24px; }
+      .pull { margin: 2.4em -8px; }
+      .citation { margin-left: 0.8em; padding-left: 1em; }
+    }
+    @media print {
+      /* Hide dynamically placed margin notes — they overlap images in print */
+      .margin-note { display: none !important; }
+      /* Show the traditional footnotes section instead */
+      .footnotes { display: block !important; }
+      /* Reset full-bleed images — 100vw + offset trick breaks in print */
+      .full-bleed-wrap {
+        width: 100%;
+        left: auto;
+        transform: none;
+        height: auto;
+        max-height: 380px;
+      }
+      /* Keep page-wrap from bleeding off the page */
+      .page-wrap { padding-right: var(--pad); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bh">בה</div>
+<a class="back-link" href="/">← yonibrown.com</a>
+
+<div class="page-wrap">
+
+  <header class="article-header">
+    <h1 class="article-title">The Self, the Other, and the Meeting Beyond Both</h1>
+    <div class="article-subtitle">Notes on Hemshech Samach Vov, Maamer 1</div>
+    <div class="article-meta">Yoni Brown</div>
+  </header>
+
+  <div class="article-header-rule"><hr></div>
+
+  <div class="article-intro">
+    <p><em>What is the purpose of life?</em> It's an intellectual question, but it's our gut that cares. We see with pain the horrifying transience of life. Our time on earth appears a zippy blip of conscious experience mysteriously vested in flesh and blood that suddenly, tragically, unexpectedly reverts to the invisible. Life here has a beginning, it has an end, and an eerie intuition deep within us whispers, "You're a stranger here." It cries out for a purpose, a why, an aim that justifies it all.</p>
+    <p><em>What is the purpose of life?</em> When you ask it like that, your mind leaps to abstractions. "Enjoy life," "Make the world a better place," and so on. But your everyday actions offer up embodied answers all their own. Do you believe life's purpose involves getting a sunburn on a Costa Rican beach? If that's what you're doing—you do.</p>
+    <p>And if actions answer this nagging question of the gut, <em>yiddishkeit</em> answers comprehensively. Halacha and <em>minhag</em> combine to populate our days and hours with a thousand virtues and duties, giving each moment its function, leaving no minute for sin, and rendering all the world's phenomena raw material for the praxis of halachic obligation. If we know to answer thunder with a <em>bracha</em>, what is the sense in asking for thunder's purpose?</p>
+    <p>Still, thoughtful minds, especially in their youth, seek an abstract articulation of life's purpose. At thirteen, the question flows from that innocent hope that all this world's mysteries may yet be known and understood once and for all. But as our lives shift from inchoate visions of future potential to the articulated details of actualized living, more immediate questions seize our attention instead: how to build a home, how to raise a child, and how to fund a this-worldly life.</p>
+    <p>Perhaps, then, our weather-wizened brows won't recoil with shock at reading the Rambam's insistence that we give up the chase. "Often even perfect minds grow perplexed in seeking the 'purpose' of this world," he wrote in <em>Moreh Nevuchim</em>'s third section, before promising, "I shall explain why this quest fails on any account."<sup><a href="#fn-0" id="fnref-0" class="fn-ref">0</a></sup></p>
+    <p>Yet the Rambam's warnings went largely unheeded. <em>Yiddishkeit</em>'s literature offers a splendid variety of purposes that this life can fulfill; purposes enough to suit the philosopher, the mystic, and the practical man alike. Still, it seems to me personally, the consideration that motivated the Rambam to silence the quest for life's ultimate purpose is the very same consideration that compels Chabad to sideline all but one of life's possible purposes.</p>
+  </div>
+
+  <div class="full-bleed-wrap">
+    <img src="image-1.png" alt="">
+  </div>
+
+  <div class="article-body">
+    <p>Five pages into <em>Hemshech Samach Vov</em>, the Rebbe Rashab's masterpiece of sixty-one <em>ma'amarim</em>, a plain statement of our world's purpose ignites its plot.</p>
+    <p>"It is known that the purpose of this world's ongoing creation, and the purpose of the soul's descent into the body, is to draw an expression of the <em>Ohr Ein Sof</em> into the worlds via Torah and Mitzvos," he writes. He cites the Midrash. "G-d desired to have a <em>dirah bitachtonim</em>—a home in the low."<sup><a href="#fn-1" id="fnref-1" class="fn-ref">1</a></sup> Our universe, a low place ostensibly hostile to G-dliness, waits to be the <em>Aibishter</em>'s home.</p>
+    <p>Before exploring this, the Rebbe Rashab first addresses a quiet question: how could infinite G-d create any definite world at all? So he cites the <em>Emek HaMelech</em>—a kabbalistic compendium in the tradition of the Arizal's better-traveled disciple,<sup><a href="#fn-2" id="fnref-2" class="fn-ref">2</a></sup> Rabbi Yisrael Sarug:</p>
+    <blockquote class="citation">"As the <em>Emek HaMelech</em>'s opening writes, the worlds' creation took place through the <em>tzimtzum harishon,</em> which occurred within the <em>Ohr Ein Sof</em> and left a hollow and vacant space. The formation of vessels and the existence of all the worlds emerged from this. After the <em>tzimtzum</em>, G-d expressed the <em>gilui hakav</em>—revealing a light fit to illuminate the vessels and worlds. And all the worlds are composed of lights and vessels and exist within the hollow and vacant space left in the <em>tzimtzum</em>'s wake."<sup><a href="#fn-3" id="fnref-3" class="fn-ref">3</a></sup></blockquote>
+    <p>Before hearing of the <em>tzimtzum</em>, students will know that, on the truest layer of being, there is only infinite G-d Himself—and G-d's infinite self-knowledge, too. But they will also know that we, conscious creatures of flesh and blood, exist, too. This poses a problem.</p>
+    <p>The problem stems from knowing that the very fabric of being itself consists of the <em>Aibishter</em>'s awareness. Just as a great unwritten novel exists only in its author's mind, so this world exists only in G-d's mind. We exist and live only so long as some aspect of G-d's knowledge pays us attention and knows us from our inside.</p>
+    <p>But how does any aspect of G-d's attention become enamored with you and me—minute pieces of this trifling, problematic realm? Given access to knowledge of the <em>Aibishter</em>, His <em>ohr</em> will never notice anything but Him. It participates in the Divine Whole, lacks nothing, and contains the totality of all value within it, and so has no reason to look outward. If G-d thrust this <em>ohr</em> into a human body, it would not notice, nor would the hapless body come to life; the <em>ohr</em>'s life-giving care would never flow through the nerves, sinews, and veins of the flesh, instead, it would revert to its true state—a formless aspect of infinite <em>Getlichkiet.</em></p>
+    <p>As long as all aspects of G-d's <em>ohr</em> are free to know themselves as participating in the <em>Ohr Ein Sof</em>, creation is impossible. So, if G-d wants raw material to create a world, He must make it.</p>
+    <p>So, the <em>Aibishter</em> made the <em>tzimtzum</em>.</p>
+    <p>G-d set Himself a boundary, designating a space within which He would not allow Himself to be known.<sup><a href="#fn-4" id="fnref-4" class="fn-ref">4</a></sup> He injected an aspect of His consciousness into this space, rendering forth one fine ray of G-dly light—the <em>kav</em>—shorn of its context, content, and self-understanding. Blocked from knowing its own deep core,<sup><a href="#fn-5" id="fnref-5" class="fn-ref">5</a></sup> this ray of consciousness must now look outward, beyond itself, to find content for its being, attaching itself to definite moods, personalities, vessels—external forms that articulate, contain, and define it.</p>
+    <p>This same process repeats itself, again and again. The <em>ohr hakav</em> tumbles ever downward, becoming, losing itself, becoming again but with less, then losing itself again in a long series of <em>tzimtzumim</em> that begets a cosmic chain of worlds wherein G-d's light reveals itself first as His <em>middos</em>, then as His angels, then as simpler angels, finally as the forces that animate this primal domain. Our souls follow a similar path, until, finally, a consciousness that knows itself not awakens to gaze with strange eyes upon a fresh, unknown world. We have arrived. Why?</p>
+    <p>The Rebbe Rashab has already told us why. It is to "Unite <em>Kudsha Brich Hu u'Shechintei,</em>" to "unite <em>sovev kol almin</em> with <em>memalei kol almin</em>," to resaturate this hollow space with the <em>Ohr Ein Sof</em> by doing <em>mitzvos</em>. G-d put us here to undo the <em>tzimtzum</em>—to make the <em>yesh</em> He made of <em>ayin</em>, <em>ayin</em> once more.<sup><a href="#fn-6" id="fnref-6" class="fn-ref">6</a></sup></p>
+    <p>What's the point? If G-d wants to be at one with all being, why make a world of chaos and task man with fixing it. Skip the <em>tzimtzum</em>, skip creation itself. He has unity already.</p>
+  </div>
+
+  <hr class="section-break">
+
+  <div class="article-body">
+    <p>Why does Chabad elevate this one purpose—<em>dirah b'tachtonim</em>? Yiddishkeit offers many explanations for why G-d created a world. Rabbi Chaim Vital opens <em>Etz Chaim</em>—that most authoritative transcript of the Arizal's teachings—with one:</p>
+    <blockquote class="citation">"The reason was that G-d must be perfect in all His actions, powers, and names of greatness, eminence, and glory. Had He not brought His actions and powers into actuality and deed, He would not, as it were, be called perfect—not in His actions, nor in His names and appellations."<sup><a href="#fn-7" id="fnref-7" class="fn-ref">7</a></sup></blockquote>
+    <p>G-d must <em>actually</em> do all that He <em>could</em> do, this argument says. Unrealized potentialities are failures, flaws, and imperfections, and the <em>Aibishter</em> is perfect. He could create us, so He had to.</p>
+    <p>In making this argument, the <em>Etz Chaim</em> cites the Zohar, which supplies a second answer by implying that G-d created the world "so that they would know Him."</p>
+    <blockquote class="citation">"For if His light did not spread over all creatures, <em>how would they know Him</em>, and how would 'The whole earth is full of His glory' (Isaiah 6:3) be fulfilled?"<sup><a href="#fn-8" id="fnref-8" class="fn-ref">8</a></sup></blockquote>
+    <p>The <em>Etz Chaim</em>'s point wasn't that G-d wants us to know Him; it's that G-d makes Himself known. The world, by extension, is simply G-d's canvas of self-expression. The Zohar, however, argues that G-d created the world because He positively wants us to know Him.<sup><a href="#fn-9" id="fnref-9" class="fn-ref">9</a></sup></p>
+    <p>Regardless, the Rebbe Rashab parries any thought that either of these reasons might constitute the Aibishter's ultimate object. And he begins with the <em>Etz Chaim</em>'s reason:</p>
+    <p>G-d does express His potential in creating this world, it is true. "Certainly, creation achieves this end," the Rebbe Rashab writes, "but this cannot be the true purpose of creation."<sup><a href="#fn-10" id="fnref-10" class="fn-ref">10</a></sup> He objects to a tacit philosophical premise—that it is meaningful to speak of G-d moving between <em>potential</em> and <em>actual</em>. Instead, he insists that, with G-d, anything that qualifies as <em>potential</em> equally qualifies as <em>actual</em>. Or, put differently, the philosophical distinction between <em>actual</em> and <em>potential</em> falls apart when applied to G-d.</p>
+    <p>Humans exist as limited agents within a larger system, a world. An idea in our mind does not impact that system until we act it out and leverage our limited strength to foist its form upon the world around us. But no system contains G-d. Instead, reality itself consists entirely of His mind's current form. All existence entirely continges upon the <em>Aibishter</em> picturing it so. As the Rebbe Rashab says, "The moment the idea of creating arose in His mind, immediately all worlds were created."<sup><a href="#fn-11" id="fnref-11" class="fn-ref">11</a></sup> With G-d, there is no dividing line between <em>the mind</em> and <em>the real</em> that would make <em>actual</em> distinct from <em>potential</em>. This makes G-d's initial vision of creation sufficiently <em>actual</em> to avoid any whiff of imperfection. It brings G-d no meaningful good, the Rebbe Rashab concludes, to express His potential in any more concrete form. G-d is already perfect. "Even before the world was created, He was perfect, perfect in His powers and doings."<sup><a href="#fn-12" id="fnref-12" class="fn-ref">12</a></sup> Hence, God gains nothing by actualizing His potential.</p>
+    <p>But what of the second reason—that of the Zohar? This reason, too, the Rebbe Rashab deftly contains:</p>
+    <p>If G-d only wanted to be known, the Rebbe Rashab asserts, He would only have created the higher worlds. Here in our world of flesh and blood, knowing G-d is a mighty struggle. Let G-d be satisfied by His highest angels, and the realm of <em>Atzilus</em>, saturated through and through by a finely articulated and immediate knowledge that <em>here is G-d, and here are His great powers.</em></p>
+    <p>But creation did not stop at <em>Atzilus</em>—that elevated realm, first in the chain of definite worlds, where G-dliness fills all consciousness. As a description of why G-d created <em>Atzilus</em>, the Zohar's reason succeeds. But it fails to explain why G-d kept on creating until He'd made <em>our world</em>, a place designed to facilitate the doubt of His presence and a place where the G-dly content of our deep core is accessible only through mighty spiritual effort.</p>
+    <p>But wait, the reader may ask, perhaps G-d's pre-creative attention <em>was</em> drawn only to <em>Atzilus</em>—perhaps our low world is the mere byproduct of G-d's true object?</p>
+    <p>The Rebbe Rashab rejects this thought for a fundamental reason: being known cannot be G-d's ultimate object, for it brings Him nothing new. He cites the Alter Rebbe's assertion in Tanya's thirty-sixth <em>perek</em> that "the ultimate purpose of the chain of spiritual worlds, and their progressive downgrade from rung to rung, is not for the sake of the upper worlds. For they only represent a downgrade from the actual light of G-d's 'face.'"<sup><a href="#fn-13" id="fnref-13" class="fn-ref">13</a></sup> For G-d, making Himself legible to the mode of knowledge is all downside, no win.</p>
+    <p>This is because knowledge is simply a kind of language—stitched from the constituents of conscious experience, not letters and words. And no language, however sensitive and subtle, can adequately describe G-d's natural transcendent, unknowable infinity. As the Zohar writes, "The <em>Ein Sof</em> does not stand to be known."<sup><a href="#fn-14" id="fnref-14" class="fn-ref">14</a></sup> In making Himself known, G-d translates Himself into a medium that is inadequate to express Him, losing many fine, subtle aspects in translation. Secondly, this knowledge, as articulated in <em>Atzilus</em>, contains nothing new. The angels who know G-d know nothing that G-d didn't already know about Himself. It's the same content, just viewed through a foggier lens. Hence, G-d gains nothing from being known.</p>
+  </div>
+
+  <hr class="section-break">
+
+  <div class="article-body">
+    <p>The thrust of the Rebbe Rashab's logic is that G-d would only have created this world if He sought something other than the straightforward expression of G-dliness. This defies philosophical thinking. In a logical world, we want more of what we are like. Intellectuals want intellectually compelling things. Earthy folk want earthy things. The shape of our nature mandates a rational attraction to what fits it.<sup><a href="#fn-15" id="fnref-15" class="fn-ref">15</a></sup> So why wouldn't G-d want what fits His nature, so to speak? Why didn't G-d beam down a world of straightforward G-dliness? Is G-d irrational?</p>
+    <p>In a 1918 <em>maamer</em>, some thirteen years after <em>Samach Vov</em>'s delivery, the Rebbe Rashab explains G-d's antipathy toward the rational thing.</p>
+    <blockquote class="citation"><em>Atzmus</em> cannot be categorized as expressed G-dliness (<em>gilui</em>). He fundamentally transcends that which is expressed. . . . For this reason, <em>Atzmus</em> perceives expressed G-dliness (<em>ohr</em>) as <em>ayin</em>—it is as nothing. But in creating a <em>yesh</em>, the created <em>yesh</em> constitutes something significant; it is not an expression; it is an existent thing. (And yes, in truth, it is nothing by itself. Its whole existence is owed to the Divine <em>ayin</em> . . . still, it presents itself as an independent being. It appears as an existence that requires no source.)<sup><a href="#fn-16" id="fnref-16" class="fn-ref">16</a></sup></blockquote>
+    <p>G-dliness mirrors the content of G-d's self, but, because of that, it provides Him nothing new. G-d is drawn to us precisely because we, by default, present ourselves as independent from Him. We have minds of our own. We stand beyond G-d's self. We are—within the rules of play G-d has set up for Himself—a true other,<sup><a href="#fn-17" id="fnref-17" class="fn-ref">17</a></sup> a counterpart, with whom He can have a relationship. Therefore, when we choose to confess our debt to Him, to acknowledge that we owe our entire being and life to Him, something meaningful has happened.</p>
+    <p>Is it rational for G-d to want this relationship? "He created the world from desire alone," the Rebbe Rashab says, "He was not compelled, heaven forbid, by perfection." Later, he adds, "We know no rational reason for why G-d desired." He soon reiterates, "It stemmed not of any need, nor of any calculating logic, it was instead because He desired thus—for desire transcends <em>taam v'daas</em>. And as the Alter Rebbe said, 'On a desire, ask no questions.'"<sup><a href="#fn-18" id="fnref-18" class="fn-ref">18</a></sup></p>
+    <p>The Maggid of Mezritch had long ago expressed the arationality of G-d's desire with an analogy:</p>
+    <blockquote class="citation">"Are not all the angels a 'third of the world,' polished lights, meaning, a beautiful world? Still, G-d finds more pleasure in mankind. They are like a talking bird speaking before a king. Even though it speaks silliness, the king finds more pleasure in it than in the speaking of wise words."<sup><a href="#fn-19" id="fnref-19" class="fn-ref">19</a></sup></blockquote>
+    <p>The Alter Rebbe expands on this analogy. For the mighty king, "silver and gold count for nothing." He <em>has</em> silver and gold. "If you wish to draw his attention to a small person's request, bring the king his small child to giggle with,<sup><a href="#fn-20" id="fnref-20" class="fn-ref">20</a></sup> or bring him something new, like a talking bird."<sup><a href="#fn-21" id="fnref-21" class="fn-ref">21</a></sup></p>
+    <p>Rationally, G-d would want angels and realms that express Him freely, clearly, and openly. But He has infinite G-dliness already. He is G-d. Instead, G-d delights in this strange, dark, chaotic world because it offers the new, different, and irresistible possibility of His being freely accepted by you and me.</p>
+    <p>In asserting this—that G-d chose to create the world from pure uncompelled desire—Chassidus rejects mechanical philosophy.</p>
+    <p>Some Jewish philosophers have argued that the <em>Aibishter</em> created this world due to something in His nature. Take, for example, what is arguably the best-known of all the reasons the Jewish tradition offers for creation's purpose—certainly in that vast world of Jewish activity beyond Chabad's environs: "It is the nature of the good to bestow good, and with no world, upon whom would G-d bestow good?"<sup><a href="#fn-22" id="fnref-22" class="fn-ref">22</a></sup> This argument appears in the very passage of the <em>Emek HaMelech</em> that the Rebbe Rashab referenced earlier in our <em>maamer</em>, but he declined to cite it. It is a purely philosophical answer.<sup><a href="#fn-23" id="fnref-23" class="fn-ref">23</a></sup> It is as if to say, "G-d is good. Goodness needs a recipient. Therefore, G-d needs recipients for His goodness." It suggests that G-d had no choice.</p>
+    <p>Perhaps this is the kind of thinking the Rambam feared when he warned readers from ever seeking the world's purpose. "Often even perfect minds grow perplexed in seeking the 'purpose' of this world," he wrote, adding, "I shall explain why this quest fails on any account."<sup><a href="#fn-24" id="fnref-24" class="fn-ref">24</a></sup> The Rambam knew well that rational mechanisms leave no room for agency. To say that a logical purpose compelled G-d to create comes dangerously close to rendering G-d, heaven forfend, a mere mechanism in the fulfillment of that purpose.<sup><a href="#fn-25" id="fnref-25" class="fn-ref">25</a></sup> Against this, the Rambam attests that the <em>Aibishter</em> exercises perfect agency.</p>
+    <p>Chabad detects the same issue, but, unlike the Rambam, it is not shy about publishing G-d's purpose. As long as G-d's purpose in creating is <em>arational</em>, His agency blazes intact in bold colors. He simply desired it. It had nothing to do with His nature.</p>
+  </div>
+
+  <hr class="section-break">
+
+  <div class="full-bleed-wrap">
+    <img src="image-2.png" alt="">
+  </div>
+
+  <div class="article-body">
+    <p>The <em>Aibishter</em> did not simply desire <em>tachtonim</em>. He desired a <em>dirah</em> therein. The Rebbe Rashab will soon—on <em>Samach Vov</em>'s twentieth page—quote the Midrash's depiction of G-d as "consulting" with the "souls of the <em>tzaddikim</em>" as to whether or not He ought to create a world.<sup><a href="#fn-26" id="fnref-26" class="fn-ref">26</a></sup> "It arose before Him that there could be souls of <em>tzadikim</em> dressed in bodies who fulfill Torah and <em>mitzvos</em> in actual fact," the Rebbe Rashab says. "From this, He was inspired, as it were, in His will, to project forth."<sup><a href="#fn-27" id="fnref-27" class="fn-ref">27</a></sup></p>
+    <p>G-d wants action. G-d created the world because He found repletion in the richness of His inner self to be ultimately unsatisfying, and He asks the same of us. Our highest aim ought not to be a rich inner life, although a deep emotional and intellectual attachment to G-dliness is extremely valuable, but to bring G-d's overt presence into the world by acting as He asks. Every time we do a <em>mitzvah</em>, we—the <em>yesh</em>, the untamed other—embrace, accept, and unite with G-d.</p>
+    <p>Notably, the Tanya only introduces the purpose of life to comfort us <em>beinonim</em> who, hopelessly attached to negativity, are stuck wrestling the demons of youth in our old age. If we never succeed in developing a fully authentic love and awe of G-d that blazes bright in our minds—what good is our struggle? <em>Dirah b'tachtonim</em> gives a higher purpose to our lifelong struggle to do what is right. Every <em>mitzvah</em> act, regardless of the quality of the self from which it sprung, is perfect; it brings us into perfect union with G-d; it captures G-d's innermost care and brings redemption.</p>
+    <p>But the struggle toward perfection does have an end. Not everyone achieves <em>geulah protis</em>, but <em>geulah klolis</em> comes for us all.</p>
+    <p>In the blissful final redemption of all human history, the <em>Ohr Ein Sof</em> will return to saturate all of being. Every man, woman, child, and honey bee will experience themselves to be an integral aspect of the Divine Whole. The one-sided mirror that forced their consciousness to look only outwards, blinding them to the true contents of their innermost longing, will open and let them see, so they may finally be at rest. They will experience "G-d's glory to fill all the earth,"<sup><a href="#fn-28" id="fnref-28" class="fn-ref">28</a></sup> and "all flesh will see together that G-d is speaking;"<sup><a href="#fn-29" id="fnref-29" class="fn-ref">29</a></sup> darkness will reveal itself as, in truth, light, and they will see and know that "G-d is G-d, and there is none besides Him."<sup><a href="#fn-30" id="fnref-30" class="fn-ref">30</a></sup> They will be G-d's <em>dirah</em>—His bastion here below. Yet, somehow, they will remain themselves, a <em>tachton</em>, still souls in bodies, their individuality intact.</p>
+    <p>Now, the question the Rebbe Rashab asked at our <em>maamer</em>'s opening clicks back into place. We asked, "What is the point of performing the <em>tzimtzum</em> only to ask humanity to undo it?" Revisited now, the question takes on a new tenor. You'll recall that the <em>tzimtzum</em> was necessary because an <em>ohr</em> that knows G-d can't stay inside its vessel. Understood in this light, <em>dirah b'tachtonim</em> becomes paradoxical—untenable even.</p>
+    <p>Here is the ultimate trouble: <em>Ohr</em> that successfully knows G-d will fail to notice anything but Him. The <em>tzimtzum</em>'s concealment cannot allow an awareness of G-d to enter our consciousness, for if it does, the effect would be like that of the biblical "angel of G-d" who "smote the camp of the Assyrians"<sup><a href="#fn-31" id="fnref-31" class="fn-ref">31</a></sup> by just showing up. Allowed to know the G-dliness within its deep core, consciousness collapses inward upon itself, abandoning an outward existence that has failed to adequately articulate its content, leaving its body lifeless. How, then, can an individual's experience contain the <em>Ohr Ein Sof</em>? The same problem that necessitates the <em>tzimtzum</em> foils the point of its undoing.</p>
+    <p>Elsewhere, the Rebbe Rashab registers his astonishment at this:</p>
+    <blockquote class="citation">"We do not understand how there can be an awareness of actual <em>Ohr Ein Sof</em> after the <em>tzimtzum</em>. The point of the <em>tzimtzum</em> is to conceal the <em>ohr</em> (and although G-d is present everywhere, He is concealed), and if the <em>ohr</em> is revealed, it entirely overwhelms all existence. Yet the purpose is that, despite this, existence should exist, and the <em>Ohr Ein Sof</em> should be revealed."<sup><a href="#fn-32" id="fnref-32" class="fn-ref">32</a></sup></blockquote>
+    <p>Back in <em>Samach Vov</em>, the Rebbe Rashab must explain how it is possible to assimilate an awareness of G-d Himself without losing one's individuality. An analogy resolves the issue:</p>
+    <blockquote class="citation">"As in an idea's communication from teacher to pupil. If the teacher communicates the deep point of his wisdom right away, the pupil cannot receive it. So the teacher must communicate a diminished idea, relatable on the pupil's terms, and after receiving the diminished idea, grasping it, and assimilating it in his mind, now he can come to the deep point of the teacher's idea and he can accept it."<sup><a href="#fn-33" id="fnref-33" class="fn-ref">33</a></sup></blockquote>
+    <p>Every idea you understand irrevocably colors the lens by which you see the world. When this process works in a positive direction, the Rebbe Rashab calls it <em>tikun hakeli</em>. "In understanding the teacher's idea, his tools of cognition are corrected and refined," he writes. Do this enough, and the "pupil's intuition becomes like the teacher's intuition."<sup><a href="#fn-34" id="fnref-34" class="fn-ref">34</a></sup></p>
+    <p>One with a poor understanding of life will meet wisdom and truth and walk away with only befuddled frustration. So long as we are attached to things that oppose G-dliness, we will be equally unable to contain an awareness of G-d. So long as these earthly impulses are integral to our identity, knowing that there is a G-d asks us to let go of too much. So where do we start? How can brute people like me and you grasp something of G-dliness, assimilate it, and thus begin to refine the <em>keli</em> of our mind?</p>
+    <p>The <em>mitzvah</em> solves this. A <em>mitzvah</em>—and a Torah idea—is an aspect of G-d's will articulated within the terms of our material world. In doing a <em>mitzvah</em> or understanding a Torah idea, we attach ourselves to something of G-dliness, so that it enters into the substrata of our consciousness, enabling us to understand, appreciate, and assimilate ever slightly more G-dliness without losing ourselves.</p>
+    <p>Once enacted, the <em>mitzvah</em> stands within us, shaping our sense of self in ways that push us ever so slightly into more precise alignment with the <em>Aibishter</em>'s will. Do enough <em>mitzvos</em>, and the whole of one's articulated existence becomes an expression of G-dliness's content. Before long, a full, direct awareness of the <em>Aibishter</em>'s presence here and now would endorse and fill the shape of our existence—rather than reveal it a lifeless husk. And when the shape of our existence can provide a perfect articulation of the spiritual ideal, <em>Ohr Ein Sof</em> can fill our awareness whilst we yet retain our individuality.</p>
+    <p>In the Rebbe Rashab's words, this is the "strength" of Torah:</p>
+    <blockquote class="citation">"The main thing is that the revelation comes through Torah, as it is written, 'G-d gave strength to his people,'<sup><a href="#fn-35" id="fnref-35" class="fn-ref">35</a></sup> and 'there is no strength save Torah,'<sup><a href="#fn-36" id="fnref-36" class="fn-ref">36</a></sup> for it is through Torah that the <em>tzaddikim</em> can assimilate the <em>Ohr Ein Sof</em>, transcendent beyond all worlds, without overwhelming their existence. And the worlds, too, come to assimilate the <em>ohr</em> in this way, as stated in Tanya."<sup><a href="#fn-37" id="fnref-37" class="fn-ref">37</a></sup></blockquote>
+  </div>
+
+  <hr class="section-break">
+
+  <div class="full-bleed-wrap">
+    <img src="image-3.png" alt="">
+  </div>
+
+  <div class="article-body">
+    <h2>The Uv'cheyn</h2>
+    <p>Few believe in much these days, but nearly everyone seems to believe that individual achievement alone is the unit by which a good life is measured. When plotting our life's path, we set aside the well-being of the family, community, and culture we are enmeshed within, turn inward, and ask, "What is authentic in me?"</p>
+    <p>Authenticity is a beautiful word. It describes what bubbles effortlessly forth from the innermost human soul when all external pressures are held at bay. It is the so-called truth within our individual hearts, and most people see its voice in the dreams, desires, and impulses that rise unbidden from their deep. Authenticity is our starting point. From it flow the clichés, "Follow Your Dream," "Live Your Truth," "Express Yourself," and so on.</p>
+    <p>These clichés assume that, when you are figuring out how to lead your life, the most important answers are found deep inside yourself. The world around us has no inherent significance, we think. It is a blank canvas. Even the self is a <em>tabla rasa</em>—with no predetermined point of belonging. This makes life into art. We are left to paint our inner emotions upon the world in vivid, bold colors, with only a vague notion of what is authentic as our guide. Before we choose a life direction, we turn, not to those around us, but to ourselves, and ask, "What do I want from life?" You discover yourself, decide what matters to you, and try to sniff out where your passions lie.</p>
+    <p>But our <em>maamer</em> militates against this attitude.</p>
+    <p>The great task of human life mirrors the great task of G-d's creation. G-d enacted the <em>tzimtzum</em>, not to express Himself, but so He could achieve unity with us—his chosen other. However infinitely majestic was His inner starting point, He desired to transcend it. He began as <em>ayin</em> and made <em>yesh</em>. We achieve the same by doing the reverse. We begin as <em>yesh</em> and make ourselves <em>ayin</em>.<sup><a href="#fn-38" id="fnref-38" class="fn-ref">38</a></sup> In undoing the <em>tzimtzum</em>, we, too, transcend our starting point. When both parties leap beyond their selves toward one another, G-d and man meet in the transcendent middle.</p>
+    <p>This conception of life's purpose brings radically different assumptions to the charting of a life's direction. We cannot find our most authentic point of belonging by turning only inward. In the mongrel melange of ideas and emotions that populate our inner life, we cannot simply tell which represents our authentic voice and which speaks on behalf of a foreign will. There's no telling what came from without and what from within: what is conditioned, what is instinct, what is emotion, and what is logic. The inner caucus speaks on behalf of a million lobbies; we know not who speaks for the I.</p>
+    <p>Inner work done in isolation cannot clarify this mess. Clarity comes when life is organized primarily around our truest, innermost wish: to achieve unity with that most significant One beyond ourselves, G-d Almighty.<sup><a href="#fn-39" id="fnref-39" class="fn-ref">39</a></sup></p>
+    <p>There is nothing individual about human life. You do not appear from nowhere. You are born to parents, thrust into a culture, and enmeshed in the lives of others from the moment you come alive. To be human is to participate by your very existence in a social habitat. As the Rebbe once wrote, "Human beings don't live in a vacuum."<sup><a href="#fn-40" id="fnref-40" class="fn-ref">40</a></sup> This means: what is beyond me has a claim to my attention and care.</p>
+    <p>This gives us a different method for sorting out life's goals. We can ask ourselves, "What contribution is needed from me?" and "What are the circumstances that G-d has thrust me into asking me to do?" Here, we allow the need of the other to take the lead.</p>
+    <p>To be sure, we also find real satisfaction in self-expression. Chabad gives every motive for creation its place. "Bestowing good" motivates G-d's <em>chessed</em>,<sup><a href="#fn-41" id="fnref-41" class="fn-ref">41</a></sup> "being known" motivates <em>chochmah</em>, and so on. But none of them describe what G-d first wanted. G-d's primary desire, and thus ours, too, is unity with what is real out there in the world beyond our heads.</p>
+    <p>And perhaps the arguments the Rebbe Rashab levied against the <em>Etz Chaim</em> and <em>Zohar</em> don't apply to men and women like you and me. Unlike G-d, human potential has no impact until actualized in action. Human talents left unexpressed <em>do</em> do spiritual damage to their holder. As Reb Hillel Particher said, "A talent, it is <em>asur</em> to waste." Self-actualization is a grand thing and has its place, but it brings fulfillment precisely when employed in service to the innermost desire: a self-transcendence that brings unity with G-d.</p>
+    <p>There is a balance somewhere. In answering the question, "What is needed of me?" we can bring our talents and passions into the picture to a greater or lesser degree. On the one hand, G-d was careful to fashion us with particular talents and passions—they, too, are a part of G-d's creation that stands expectantly before us, asking us to use them right before they die. In light of this, we might ask, "What can I do so that my talents and sincere passions serve the world's deep need?"</p>
+    <p>But, sadly, few can view the shape of their existence with this kindly dispassion. When the self enters the picture, our distorting ego enters with it. So, on the other hand, we have the words of the Rebbe:</p>
+    <blockquote class="citation">"Had creation been rational, we would give existence credit for fulfilling the purpose. We would give credit to the person who fulfills the purpose. But in light of the truth that creation was desired—it arbitrarily arose in G-d's will, otherwise holding no natural significance save that G-d's deep core desired it—the <em>dirah</em> is achieved precisely by entirely losing one's experience of personal existence. (One should not think: I fulfill the purpose; therefore, I am significant), for the whole notion of a <em>dirah b'tachtonim</em> is that it is unnecessary, save that G-d desired it."<sup><a href="#fn-42" id="fnref-42" class="fn-ref">42</a></sup></blockquote>
+    <p>This whole world is contingent upon G-d's desire for it. None of this has any natural significance. The shape of your existence, the places where your passions currently appear to pull you, are not naturally significant. They gain significance when they serve G-d's desire and purpose—when they are necessary.</p>
+    <p>So, pay little mind to what appears to be the shape of your existence. It misrepresents what you could be. Instead, the Rebbe asks us to focus on what is asked of us by the spiritual hunger in the world around us. Measuring achievement solely in terms of our individual selves—in terms of how well we have expressed the self we decided we have—is fundamentally the wrong way to measure success.</p>
+    <p>Again, there is the caveat: if we experience the presence of our talents as G-d's way of demanding transcendence from us, following their lead ceases to be a matter of ego-enmeshed self-expression. But so long as our ego claims our talents for itself, directly seeking their fullest expression leads one further and further away from transcendence, unity, and fulfillment. Better, then, to focus on what you do necessarily experience as beyond yourself—the needs of others and the commands of G-d. Do this, trustfall on G-d, and the many talents G-d carefully packed in your knapsack will find their richest and fullest fulfillment in good time.</p>
+  </div>
+
+  <!-- Mobile footnotes -->
+  <section class="footnotes">
+    <div class="footnotes-label">Notes</div>
+    <ol>
+      <li id="fn-0"><em>Moreh Nevuchim</em> III, 13 (as translated by Goodman and Leiberman, <em>The Guide to the Perplexed: A New Translation</em>, 362). <a href="#fnref-0" class="fn-back">↩</a></li>
+      <li id="fn-1"><em>Midrash Tanchuma</em>, Bechukosai 3; Ibid, Naso 15; <em>Bereshis Rabbah</em> 3; <em>Bamidbar Rabbah</em> 13, 6. <a href="#fnref-1" class="fn-back">↩</a></li>
+      <li id="fn-2">He is known to have appeared in Salonika, Dubrovnik, Ferrara, Venice, Conegliano, Gorizia, Venice (again), Frankfurt, Krakow—with likely visits to Constantinople and Egypt—in the years following the Arizal's passing. Eli Rubin notes, "Although it is unclear whether or not the latter was a direct disciple of Arizal, he devoted his entire life to the study of Arizal's writings, and was largely responsible for the dissemination of his teachings throughout Europe." For a brief sketch of R. Yisrael Sarug's reception in Chassidus Chabad, see Chabadpedia, entry ישראל סרוג. <a href="#fnref-2" class="fn-back">↩</a></li>
+      <li id="fn-3">R. Shalom Dovber Schneersohn, <em>Yom Tov Shel Rosh HaShana 5666</em>, p. 5. <a href="#fnref-3" class="fn-back">↩</a></li>
+      <li id="fn-4">It remains true that "there is only Him, one and united, filling all space," only now, forbidden from seeing G-d's presence, the conscious inhabitants of our world—themselves aspects of G-d's self-knowledge—perceive themselves as independent beings. <a href="#fnref-4" class="fn-back">↩</a></li>
+      <li id="fn-5">This process is only present in very subtle ways at first stop after the <em>tzimtzum</em>. I hope to describe what's happening in the long run, even if its fullest fruition only emerges in the lower levels of <em>seder hishtalshelus</em>. <a href="#fnref-5" class="fn-back">↩</a></li>
+      <li id="fn-6">See R. Shneur Zalman of Liadi, <em>Torah Ohr</em>, Beshalach, p. 66b. <a href="#fnref-6" class="fn-back">↩</a></li>
+      <li id="fn-7">R. Chaim Vital, <em>Etz Chaim</em>, Drush Igulim v'Yosher 1. <a href="#fnref-7" class="fn-back">↩</a></li>
+      <li id="fn-8">Zohar II, 42b. <a href="#fnref-8" class="fn-back">↩</a></li>
+      <li id="fn-9">This is R. Yoel Kahn's point. <em>Sugyos b'Chassidus</em>, 197. <a href="#fnref-9" class="fn-back">↩</a></li>
+      <li id="fn-10">R. Shalom Dovber Schneersohn, <em>Yom Tov Shel Rosh HaShana 5666</em>, 7. <a href="#fnref-10" class="fn-back">↩</a></li>
+      <li id="fn-11">Ibid. The Rebbe Rashab sees this point in R. Moshe Cordovero's <em>Pardes Rimonim</em>, <em>Shaar HaTzachtzachos</em>, 3: "For G-d's thoughts are not our thoughts; nor are His ways our ways. If man's mind thinks to create a being, his thoughts have no effect. Even if man pictures the precise form of the being he wishes to create, it will still be as nothing until he actually makes it. So [for man], actual is more complete than potential. Not so the acts and creations of G-d. For when it arose in His will to create and emanate pure holy <em>Atzilus</em>, it was entirely emanated and formed in Him." <a href="#fnref-11" class="fn-back">↩</a></li>
+      <li id="fn-12">To render the conversation doubly mute, the Rebbe Rashab posits, citing the Pardes, the Zohar, and significant precedent in the Chabad canon, that some aspect of actual existence is present prior to the <em>tzimtzum</em>—be it the content of the <em>reshimu</em>, the <em>eser sefiros hagenuzos</em>, or <em>tehiru ila'ah</em>. If G-d needed only to create something actual, the Rebbe Rashab implies, the <em>tzimtzum</em> would have been unnecessary. <a href="#fnref-12" class="fn-back">↩</a></li>
+      <li id="fn-13">R. Schneur Zalman of Liadi, <em>Tanya, Likutei Amarim</em>, ch. 36 (as translated by Chaim Miller, <em>The Practical Tanya</em>, Part 1, 401). <a href="#fnref-13" class="fn-back">↩</a></li>
+      <li id="fn-14">Zohar II, 139a. <a href="#fnref-14" class="fn-back">↩</a></li>
+      <li id="fn-15">See R. Yoel Kahn, <em>Sugyos B'Chassidus</em>, 196. <a href="#fnref-15" class="fn-back">↩</a></li>
+      <li id="fn-16">R. Shalom Dovber Schneersohn, <em>Sefer HaMaamarim 5678</em>, p. 113. <a href="#fnref-16" class="fn-back">↩</a></li>
+      <li id="fn-17"> <a href="#fnref-17" class="fn-back">↩</a></li>
+      <li id="fn-18">R. Shalom Dovber Schneersohn, <em>Yom Tov Shel Rosh HaShana 5666</em>, 10–11. <a href="#fnref-18" class="fn-back">↩</a></li>
+      <li id="fn-19">R. Dovber, the Magid of Mezritch, <em>Ohr Torah</em>, 388. See <em>Keser Shem Tov</em>, s. 407–3, which seems to attribute this teaching, almost verbatim, to the Baal Shem Tov. <a href="#fnref-19" class="fn-back">↩</a></li>
+      <li id="fn-20">As opposed to a servant, whose relationship to the king is defined by their utility to him, a child is meaningful precisely because they exist beyond the parent's agency and self. <a href="#fnref-20" class="fn-back">↩</a></li>
+      <li id="fn-21">R. Schneur Zalman of Liadi, <em>Likutei Torah</em>, Bamidbar 19d. <a href="#fnref-21" class="fn-back">↩</a></li>
+      <li id="fn-22">R. Naftali Hertz Bachrach, <em>Emek HaMelech</em>, Shaar Sha'ashuai HaMelech 1. This reason for creation was made famous by Rabbi Moshe Chaim Luzzato's kabbalistic work, <em>Daas Tevunos</em>. <a href="#fnref-22" class="fn-back">↩</a></li>
+      <li id="fn-23">See R. Eizik Homiler, <em>Maamer Shnei Hameoros</em>, 289. <a href="#fnref-23" class="fn-back">↩</a></li>
+      <li id="fn-24"><em>Moreh Nevuchim</em> III, 13 (as translated by Goodman and Leiberman, <em>The Guide to the Perplexed: A New Translation</em>, 362). <a href="#fnref-24" class="fn-back">↩</a></li>
+      <li id="fn-25">This reading suggests itself in Yeshayahu Leibowitz's reading: "The theocentricity of his thinking and of his attitude to the world cannot suffer the determination of any purpose whatsoever in the creation, since such a purpose would lead us to regard the Creator and His exploits as means toward achieving His purpose." <em>Faith of Maimonides</em>, 27. Cited in Goodman <em>ad loc</em>. <a href="#fnref-25" class="fn-back">↩</a></li>
+      <li id="fn-26">See <em>Bereshis Rabbah</em> 8:3. <a href="#fnref-26" class="fn-back">↩</a></li>
+      <li id="fn-27">R. Shalom Dovber Schneersohn, <em>Yom Tov Shel Rosh HaShana 5666</em>, 27. <a href="#fnref-27" class="fn-back">↩</a></li>
+      <li id="fn-28">Numbers 14:21. <a href="#fnref-28" class="fn-back">↩</a></li>
+      <li id="fn-29">Isaiah 40:5. <a href="#fnref-29" class="fn-back">↩</a></li>
+      <li id="fn-30">Deuteronomy 4:35. <a href="#fnref-30" class="fn-back">↩</a></li>
+      <li id="fn-31">Kings II 19:35. <a href="#fnref-31" class="fn-back">↩</a></li>
+      <li id="fn-32">R. Shalom Dovber Shneersohn, <em>B'Sha'a Shehikdimu 5672</em>, Vol. 4, 1229. <a href="#fnref-32" class="fn-back">↩</a></li>
+      <li id="fn-33">R. Shalom Dovber Schneersohn, <em>Yom Tov Shel Rosh HaShana 5666</em>, 5–6. <a href="#fnref-33" class="fn-back">↩</a></li>
+      <li id="fn-34">Ibid, 6. <a href="#fnref-34" class="fn-back">↩</a></li>
+      <li id="fn-35">Psalms 29:11. <a href="#fnref-35" class="fn-back">↩</a></li>
+      <li id="fn-36"><em>Midrash Shir HaShirim Rabbah</em> 1:4, 2:3. <a href="#fnref-36" class="fn-back">↩</a></li>
+      <li id="fn-37">R. Shalom Dovber Schneersohn, <em>Yom Tov Shel Rosh HaShana 5666</em>, 6. See <em>Tanya, Likkutei Amarim</em> ch. 36. <a href="#fnref-37" class="fn-back">↩</a></li>
+      <li id="fn-38">See R. Shneur Zalman of Liadi, <em>Torah Ohr</em>, Beshalach, p. 66b. <a href="#fnref-38" class="fn-back">↩</a></li>
+      <li id="fn-39">There is also the aspect of the Divine hidden in other people. R. Yehuda Ashlag, the Baal HaSulam, wrote in a notebook, "If you think you're fooling your friend, know you're trying to fool G-d—for beyond your body, there is nothing but G-d." (<em>Maamarei Shomati</em>, 67.) <a href="#fnref-39" class="fn-back">↩</a></li>
+      <li id="fn-40">Letter dated 24 Tishrei 5738, Kfar Chabad 1884, p. 9. <a href="#fnref-40" class="fn-back">↩</a></li>
+      <li id="fn-41">See <em>Likutei Sichos</em> Vol. 6, p. 21, fn. 29 and <em>Maamer Shnei Hameoros</em> (Kehot, Brooklyn, 2023) p. 289. <a href="#fnref-41" class="fn-back">↩</a></li>
+      <li id="fn-42"><em>Likutei Sichos</em> Vol 6, p. 21, fn. 70. <a href="#fnref-42" class="fn-back">↩</a></li>
+    </ol>
+  </section>
+
+  <footer class="article-footer">
+    <a href="/cdn-cgi/l/email-protection#a4ddcbcacde4ddcbcacdc6d6cbd3ca8ac7cbc9"><span class="__cf_email__" data-cfemail="186177767158617776717a6a776f76367b7775">[email&#160;protected]</span></a>
+  </footer>
+
+</div><!-- /.page-wrap -->
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function () {
+  if (window.innerWidth < 861) return;
+  var wrap = document.querySelector('.page-wrap');
+  if (!wrap) return;
+
+  var built = false;
+  function build() {
+    if (built) return;
+    built = true;
+    var refs = Array.from(document.querySelectorAll('.fn-ref'));
+    var wrapRect = wrap.getBoundingClientRect();
+    var placed = [];
+
+    refs.forEach(function (ref) {
+      var fnId = ref.getAttribute('href').replace('#', '');
+      var source = document.getElementById(fnId);
+      if (!source) return;
+
+      // Clone content, strip back-link
+      var tmp = document.createElement('div');
+      tmp.innerHTML = source.innerHTML;
+      var back = tmp.querySelector('.fn-back');
+      if (back) back.remove();
+      var content = tmp.innerHTML.trim();
+      if (!content) return;
+
+      // Distance from top of wrap to this footnote reference
+      var top = ref.getBoundingClientRect().top - wrapRect.top;
+
+      var note = document.createElement('aside');
+      note.className = 'margin-note';
+      // Visible but invisible so offsetHeight is measurable before reveal
+      note.style.display = 'block';
+      note.style.visibility = 'hidden';
+      note.innerHTML = '<span class="margin-note-num">' + ref.textContent + '</span>' + content;
+      note.style.top = top + 'px';
+      wrap.appendChild(note);
+      placed.push({ el: note, top: top });
+    });
+
+    // Measure heights then resolve collisions, then reveal
+    requestAnimationFrame(function () {
+      var MIN_GAP = 28;
+      for (var i = 1; i < placed.length; i++) {
+        var prev = placed[i - 1];
+        var minTop = prev.top + prev.el.offsetHeight + MIN_GAP;
+        if (placed[i].top < minTop) {
+          placed[i].top = minTop;
+          placed[i].el.style.top = minTop + 'px';
+        }
+      }
+      placed.forEach(function (p) { p.el.style.visibility = 'visible'; });
+    });
+  }
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(build);
+    setTimeout(build, 1200);
+  } else {
+    window.addEventListener('load', build);
+  }
+})();
+</script>
+
+</body>
+</html>
