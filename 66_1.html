@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -580,9 +579,8 @@
     });
   }
 
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(build);
-    setTimeout(build, 1200);
+  if (document.readyState === 'complete') {
+    build();
   } else {
     window.addEventListener('load', build);
   }
