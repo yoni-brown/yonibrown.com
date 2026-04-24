@@ -30,6 +30,8 @@ body{background:var(--paper);color:var(--ink);font-family:'Satoshi',sans-serif;-
 .hero h1{font-family:'Basteleur Moonlight',serif;font-weight:normal;font-size:clamp(3.5rem,11vw,9rem);letter-spacing:-0.02em;line-height:0.92;text-align:center}
 .hero .sub{font-size:clamp(0.85rem,1.3vw,1.15rem);font-weight:400;color:var(--stone);margin-top:14px;letter-spacing:0.08em;text-align:center}
 .hero .tagline{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(0.95rem,1.4vw,1.25rem);color:var(--stone);margin-top:clamp(24px,4vh,48px);text-align:center;letter-spacing:0.01em;min-height:1.6em}
+.hero .letter{display:none}
+.hero .letter.on{display:inline}
 .cursor{display:inline-block;width:1.5px;height:1.05em;background:#5C6B4F;margin-left:1px;vertical-align:text-bottom;animation:blink 0.7s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .scroll-hint{position:absolute;bottom:clamp(24px,4vh,48px);left:50%;transform:translateX(-50%);animation:drift 2s ease-in-out infinite}
@@ -69,31 +71,34 @@ body{background:var(--paper);color:var(--ink);font-family:'Satoshi',sans-serif;-
 .wp-wc{font-size:clamp(0.68rem,0.75vw,0.75rem);color:var(--stone);margin-top:2px}
 .course-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 24px;margin-top:8px;font-size:clamp(0.78rem,0.88vw,0.88rem);font-weight:300;line-height:1.6;color:var(--ink)}
 
-/* --- Paper Trail --- */
-.trail-section{padding:0 clamp(16px,4vw,48px) 10vh}
-.trail-label{font-size:clamp(0.58rem,0.65vw,0.7rem);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:clamp(28px,5vh,48px);text-align:center}
-.broadsheet{column-count:3;column-gap:clamp(20px,2.5vw,36px);column-rule:0.5px solid var(--rule)}
-.grp{break-inside:avoid;position:relative;padding:clamp(10px,1.2vw,16px) 0;border-bottom:0.5px solid var(--rule)}
-.grp-label{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-family:'Zodiak',serif;font-weight:500;font-size:clamp(0.95rem,1.3vw,1.3rem);color:var(--ink);letter-spacing:-0.01em;line-height:1.2;opacity:0;transition:opacity 0.25s ease;pointer-events:none;z-index:2;background:rgba(253,251,247,0.7)}
-.grp-label .yr{font-family:'Satoshi',sans-serif;font-size:clamp(0.6rem,0.7vw,0.75rem);font-weight:400;color:var(--stone);letter-spacing:0.04em;margin-left:8px}
-.grp:hover .grp-label{opacity:1}
-.grp-body{line-height:1.55;transition:opacity 0.3s ease;position:relative;z-index:1}
-.grp:hover .grp-body{opacity:0.4}
-.grp-body a{text-decoration:none;color:var(--ink);font-weight:300;transition:opacity 0.15s}
-.grp-body a:hover{text-decoration:underline;font-weight:400}
-.grp-body .d{display:inline-block;width:0.3em;height:0.3em;background:rgba(42,40,38,0.13);border-radius:50%;margin:0 0.4em;vertical-align:middle}
-.grp-massive .grp-body,.grp-large .grp-body,.grp-small .grp-body,.grp-tiny .grp-body{font-size:clamp(0.66rem,0.82vw,0.82rem)}
-.grp-span-all{column-span:all}
+/* --- Paper Trail (scroll-typed) --- */
+.trail-wrap{position:relative}
+.trail-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;padding:clamp(40px,6vh,72px) clamp(24px,6vw,80px) clamp(24px,3vh,40px)}
+.trail-header{text-align:center;margin-bottom:clamp(20px,3vh,36px);flex-shrink:0}
+.trail-body{flex:1;overflow:hidden;max-width:900px;width:100%;margin:0 auto;padding-bottom:40vh;font-family:'Zodiak',serif;font-size:clamp(0.85rem,1.15vw,1.1rem);line-height:1.75;font-weight:400;letter-spacing:-0.005em}
+.trail-body a{text-decoration:none;color:var(--ink);transition:color 0.5s ease}
+.trail-body a:hover{text-decoration:underline}
+.trail-body a.done{color:var(--stone)}
+.trail-body .dot{display:inline-block;width:0.28em;height:0.28em;background:rgba(42,40,38,0.18);border-radius:50%;margin:0 0.45em;vertical-align:middle}
+.trail-cursor{display:inline-block;width:1.5px;height:1.1em;background:#5C6B4F;vertical-align:text-bottom;margin-left:2px;animation:blink 0.7s step-end infinite}
+
+/* --- Mouse follower --- */
+.mouse-dot{position:fixed;top:0;left:0;width:24px;height:24px;border-radius:50%;background:#D94A3D;pointer-events:none;z-index:9999;transform:translate3d(-50%,-50%,0);will-change:transform;mix-blend-mode:multiply;opacity:0;transition:opacity 0.3s ease}
+.mouse-dot.active{opacity:0.9}
+@media(hover:none){.mouse-dot{display:none}}
 
 /* --- Footer --- */
 .footer{text-align:center;padding:4vh 24px 8vh}
 .footer a{font-size:clamp(0.8rem,1vw,0.95rem);color:var(--stone);text-decoration:none;border-bottom:0.5px solid var(--faint);transition:border-color 0.2s}
 .footer a:hover{border-color:var(--stone)}
-@media(max-width:900px){.broadsheet{column-count:2}}
-@media(max-width:550px){.broadsheet{column-count:1}.course-grid{grid-template-columns:1fr}}
+
+@media(max-width:550px){.course-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
+<div class="mouse-dot" id="mouseDot"></div>
+
 <div class="bh">BH</div>
 
 <!-- HERO with scroll-driven typing -->
@@ -142,10 +147,14 @@ body{background:var(--paper);color:var(--ink);font-family:'Satoshi',sans-serif;-
 </div>
 
 <!-- PAPER TRAIL -->
-<section class="trail-section">
-  <p class="trail-label">paper trail</p>
-  <div class="broadsheet" id="broadsheet"></div>
-</section>
+<div class="trail-wrap" id="trailWrap">
+  <div class="trail-sticky">
+    <div class="trail-header">
+      <p class="sec-label">paper trail</p>
+    </div>
+    <div class="trail-body" id="trailBody"></div>
+  </div>
+</div>
 
 <!-- BACKGROUND (collapsed) -->
 <div style="max-width:640px;margin:0 auto;padding:0 24px 4vh;text-align:center">
@@ -188,18 +197,74 @@ body{background:var(--paper);color:var(--ink);font-family:'Satoshi',sans-serif;-
 </footer>
 
 <script>
-// --- Scroll-driven typing ---
-var PHRASE_1='Because every word counts.';
-var PHRASE_2='Because every word matters.';
+// --- Mouse follower dot (with easing) ---
+(function(){
+  var dot=document.getElementById('mouseDot');
+  var tx=0,ty=0,cx=0,cy=0;
+  var EASE=0.12; // lower = slower catch-up
+
+  document.addEventListener('mousemove',function(e){
+    tx=e.clientX;ty=e.clientY;
+    if(!dot.classList.contains('active')){
+      // On first move, snap to position so there's no flight from 0,0
+      cx=tx;cy=ty;
+      dot.classList.add('active');
+    }
+  },{passive:true});
+
+  document.addEventListener('mouseleave',function(){
+    dot.classList.remove('active');
+  });
+
+  function tick(){
+    cx+=(tx-cx)*EASE;
+    cy+=(ty-cy)*EASE;
+    dot.style.transform='translate3d('+cx+'px,'+cy+'px,0) translate(-50%,-50%)';
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+
+<script>
+// --- Scroll-driven typing (Hero) — individual letter spans ---
 var SHARED='Because every word ';
 var WORD_1='counts.';
 var WORD_2='matters.';
 var typedEl=document.getElementById('typed');
 var heroWrap=document.getElementById('heroWrap');
 var scrollHint=document.getElementById('scrollHint');
-var lastText='';
 
-function getProgress(){
+// Build letter spans — all flat inside #typed
+var sharedSpans=[], w1Spans=[], w2Spans=[];
+
+SHARED.split('').forEach(function(ch){
+  var s=document.createElement('span');
+  s.className='letter';
+  s.textContent=ch;
+  typedEl.appendChild(s);
+  sharedSpans.push(s);
+});
+
+WORD_1.split('').forEach(function(ch){
+  var s=document.createElement('span');
+  s.className='letter';
+  s.textContent=ch;
+  typedEl.appendChild(s);
+  w1Spans.push(s);
+});
+
+WORD_2.split('').forEach(function(ch){
+  var s=document.createElement('span');
+  s.className='letter';
+  s.textContent=ch;
+  typedEl.appendChild(s);
+  w2Spans.push(s);
+});
+
+var lastHeroState='';
+
+function getHeroProgress(){
   var rect=heroWrap.getBoundingClientRect();
   var scrollable=heroWrap.offsetHeight-window.innerHeight;
   if(scrollable<=0)return 0;
@@ -207,15 +272,42 @@ function getProgress(){
 }
 
 function renderTyping(){
-  var p=getProgress();
-  var text='';
-  if(p<0.06){text='';}
-  else if(p<0.48){var t=(p-0.06)/0.42;text=PHRASE_1.substring(0,Math.floor(t*PHRASE_1.length));}
-  else if(p<0.56){text=PHRASE_1;}
-  else if(p<0.70){var t=(p-0.56)/0.14;text=PHRASE_1.substring(0,PHRASE_1.length-Math.floor(t*WORD_1.length));}
-  else if(p<0.90){var t=(p-0.70)/0.20;text=SHARED+WORD_2.substring(0,Math.floor(t*WORD_2.length));}
-  else{text=PHRASE_2;}
-  if(text!==lastText){typedEl.textContent=text;lastText=text;}
+  var p=getHeroProgress();
+
+  // Phase 1: type shared prefix (0.04 – 0.30)
+  var sharedCount=0;
+  if(p<0.04) sharedCount=0;
+  else if(p<0.30) sharedCount=Math.ceil(((p-0.04)/0.26)*sharedSpans.length);
+  else sharedCount=sharedSpans.length;
+
+  // Phase 2: type "counts." (0.30 – 0.48)
+  var w1Count=0;
+  if(p>=0.30&&p<0.48) w1Count=Math.ceil(((p-0.30)/0.18)*w1Spans.length);
+  else if(p>=0.48&&p<0.56) w1Count=w1Spans.length;
+  // Phase 3: delete "counts." (0.56 – 0.68)
+  else if(p>=0.56&&p<0.68) w1Count=w1Spans.length-Math.floor(((p-0.56)/0.12)*w1Spans.length);
+  else if(p>=0.68) w1Count=0;
+
+  // Phase 4: type "matters." (0.68 – 0.88)
+  var w2Count=0;
+  if(p>=0.68&&p<0.88) w2Count=Math.ceil(((p-0.68)/0.20)*w2Spans.length);
+  else if(p>=0.88) w2Count=w2Spans.length;
+
+  // Build state key to avoid unnecessary DOM writes
+  var state=sharedCount+','+w1Count+','+w2Count;
+  if(state!==lastHeroState){
+    lastHeroState=state;
+    for(var i=0;i<sharedSpans.length;i++){
+      sharedSpans[i].classList.toggle('on',i<sharedCount);
+    }
+    for(var i=0;i<w1Spans.length;i++){
+      w1Spans[i].classList.toggle('on',i<w1Count);
+    }
+    for(var i=0;i<w2Spans.length;i++){
+      w2Spans[i].classList.toggle('on',i<w2Count);
+    }
+  }
+
   if(scrollHint){scrollHint.style.opacity=Math.max(0,1-p*4);}
   requestAnimationFrame(renderTyping);
 }
@@ -232,29 +324,298 @@ function toggleFold(trigger){
   if(content)content.classList.toggle('open');
 }
 
-// --- Paper Trail ---
-var TRAIL={"groups":[{"c":"Lubavitch International","size":"massive","t":[{"t":"\u2018Yossi Tenenboim Day\u2019 Celebrates Young Shliach\u2019s Bar Mitzvah","u":"https://www.lubavitch.com/yossi-tenenboim-day-celebrates-young-shliachs-bar-mitzvah/"},{"t":"A Canceled Bar Mitzvah, A Heartwarming Wave Of Support","u":"https://www.lubavitch.com/a-canceled-bar-mitzvah-a-heartwarming-wave-of-support/"},{"t":"World\u2019s Deepest Underground Synagogue Connects Material and Spiritual","u":"https://www.lubavitch.com/worlds-deepest-underground-synagogue-connects-material-and-spiritual/"},{"t":"July Game Changers: Bassie Shemtov","u":"https://www.lubavitch.com/july-game-changers-bassie-shemtov/"},{"t":"\u201cAggie Rabbi\u201d Answers Mid-Atlantic Call For Kosher Food","u":"https://www.lubavitch.com/aggie-rabbi-answers-mid-atlantic-call-for-kosher-food/"},{"t":"Jewish In Berlin And Scoring High","u":"https://www.lubavitch.com/jewish-in-berlin-and-scoring-high/"},{"t":"CTeens Bond, Connect to Their Judaism on Israel Heritage Quest","u":"https://www.lubavitch.com/cteens-bond-connect-to-their-judaism-on-israel-heritage-quest/"},{"t":"Torah Scrolls Stolen, Synagogue Vandalized at Chabad of Long Beach","u":"https://www.lubavitch.com/torah-scrolls-stolen-synagogue-vandalized-at-chabad-of-long-beach/"},{"t":"Chabad Community in Louisiana Braces for Hurricane Ida","u":"https://www.lubavitch.com/chabad-community-in-louisiana-braces-for-hurricane-ida/"},{"t":"Children\u2019s Book Turns Personal Tragedy Into Communal Healing","u":"https://www.lubavitch.com/childrens-book-turns-personal-tragedy-into-communal-healing/"},{"t":"Record Numbers to Hear Shofar in the Parks","u":"https://www.lubavitch.com/record-numbers-to-hear-shofar-in-the-parks/"},{"t":"Recovery Community Celebrates Opening of Chabad Center","u":"https://www.lubavitch.com/recovery-community-celebrates-opening-of-chabad-center/"},{"t":"An Out-of-the-Box Way to Celebrate in the Sukkah","u":"https://www.lubavitch.com/an-out-of-the-box-way-to-celebrate-in-the-sukkah/"},{"t":"Restoration of Historic Russian Synagogue Begins","u":"https://www.lubavitch.com/restoration-of-historic-russian-synagogue-begins/"},{"t":"Tomsk Educational Center Heralds Jewish Renewal","u":"https://www.lubavitch.com/tomsk-educational-center-heralds-jewish-renewal/"},{"t":"Last-Minute Drive-Through Show Inspires Argentinian Community","u":"https://www.lubavitch.com/chabad-of-argentina-races-to-inspire-with-drive-through-show/"},{"t":"International Conference Of Chabad Emissaries Begins","u":"https://www.lubavitch.com/international-conference-of-chabad-emissaries-begins/"},{"t":"Desert Wedding Seals a Year of Torah Learning for Young Eastern European Jews","u":"https://www.lubavitch.com/desert-wedding-seals-a-year-of-torah-learning-for-young-eastern-european-jews/"},{"t":"Grand Jewish Educational Center Underway in Buenos Aires","u":"https://www.lubavitch.com/grand-jewish-educational-center-underway-in-buenos-aires/"},{"t":"Miniature \u201cPegisha\u201d Draws Four Hundred To Brooklyn","u":"https://www.lubavitch.com/miniature-pegisha-draws-four-hundred-to-brooklyn/"},{"t":"Helicopters, Firetrucks, and Menorahs - Oh My!","u":"https://www.lubavitch.com/helicopters-firetrucks-and-menorahs-oh-my/"},{"t":"NYC Mayor-Elect in Ghana Joins Chabad for Menorah Lighting","u":"https://www.lubavitch.com/nyc-mayor-elect-in-ghana-joins-chabad-for-menorah-lighting/"},{"t":"Community Building in Cabo S. Lucas","u":"https://www.lubavitch.com/community-building-in-cabo-s-lucas/"},{"t":"Unknown Jewish Man Receives Full Jewish Burial","u":"https://www.lubavitch.com/unknown-jewish-man-receives-full-jewish-burial/"},{"t":"Chabad Rushes Water and Warm Clothing to Tornado Victims","u":"https://www.lubavitch.com/chabad-rushes-water-and-warm-clothing-to-tornado-victims/"},{"t":"Flying Food To Canadian Flood Victims","u":"https://www.lubavitch.com/flying-food-to-canadian-flood-victims/"},{"t":"A Traditional Revolution","u":"https://www.lubavitch.com/a-traditional-revolution/"},{"t":"Texas Ten Talkers Dig Deep","u":"https://www.lubavitch.com/texas-ten-talkers-dig-deep/"},{"t":"Amid Kazakhstan Bloodshed, Jewish Community Prays for Peace","u":"https://www.lubavitch.com/amid-kazakhstan-bloodshed-jewish-community-prays-for-peace/"},{"t":"Paths Through The Sea","u":"https://www.lubavitch.com/paths-through-the-sea/"},{"t":"Wounded Warriors Bring Jewish Pride To Campus","u":"https://www.lubavitch.com/wounded-warriors-bring-jewish-pride-to-campus/"},{"t":"Young Professionals Dive Into A Brooklyn Shabbos","u":"https://www.lubavitch.com/young-professionals-dive-into-a-brooklyn-shabbos/"},{"t":"Hybrid Conference Of Chabad Lubavitch Shluchos Begins","u":"https://www.lubavitch.com/hybrid-conference-of-chabad-lubavitch-shluchos-begins/"},{"t":"Spiritual Hierarchy Or Anarchy?","u":"https://www.lubavitch.com/spiritual-hierarchy-or-anarchy/"},{"t":"Uninterested, But Caring","u":"https://www.lubavitch.com/uninterested-but-caring/"},{"t":"How To Host A King","u":"https://www.lubavitch.com/how-to-host-a-king/"},{"t":"Hot Meals For Rostov\u2019s Isolated Elders","u":"https://www.lubavitch.com/hot-meals-for-rostovs-isolated-elders/"},{"t":"Population Boom Brings Fourth Chabad Couple to Montana","u":"https://www.lubavitch.com/population-boom-brings-fourth-chabad-couple-to-montana/"},{"t":"Moses Lighting the Menorah?!","u":"https://www.lubavitch.com/moses-lighting-the-menorah/"},{"t":"From Dealing Drugs To Writing Scrolls","u":"https://www.lubavitch.com/from-dealing-drugs-to-writing-scrolls/"},{"t":"Two Counts, One Number","u":"https://www.lubavitch.com/two-counts-one-number/"},{"t":"Happiness is Next to Kindness","u":"https://www.lubavitch.com/happiness-is-next-to-kindness/"},{"t":"CTeen Shabbaton Brings 2,500 to New York","u":"https://www.lubavitch.com/cteen-shabbaton-brings-2500-to-new-york/"},{"t":"Students Surprise Refugees with Busload of Food","u":"https://www.lubavitch.com/students-surprise-refugees-with-busload-of-food/"},{"t":"New Orleans Kicks Off Fourth Generation of Chabad Outreach","u":"https://www.lubavitch.com/new-orleans-kicks-off-fourth-generation-of-chabad-outreach/"},{"t":"Yeka Counselors Drop Everything to Be With Ukrainian Campers","u":"https://www.lubavitch.com/yeka-counselors-drop-everything-to-be-with-ukrainian-campers/"},{"t":"110 Schoolchildren Show Off Jewish Knowledge at Championship Game Show","u":"https://www.lubavitch.com/110-schoolchildren-show-off-jewish-knowledge-at-championship-game-show/"},{"t":"Sivan Rahav Meir Interviews Rabbi Shlomo Peles","u":"https://www.lubavitch.com/sivan-rahav-meir-interviews-rabbi-shlomo-peles/"},{"t":"California Rabbi & Ohio Trucker Rescue Paralyzed Grandmother in Ukraine","u":"https://www.lubavitch.com/california-rabbi-ohio-trucker-rescue-paralyzed-grandmother-in-ukraine/"},{"t":"Aleph Rescues Afghans from Taliban","u":"https://www.lubavitch.com/aleph-rescues-afghans-from-taliban/"},{"t":"Meeting Jews and Making Moves in Minnesota","u":"https://www.lubavitch.com/meeting-jews-and-making-moves-in-minnesota/"},{"t":"Congress Honors Lubavitcher Rebbe at Washington DC Conference","u":"https://www.lubavitch.com/congress-honors-lubavitcher-rebbe-at-washington-dc-conference/"},{"t":"Vienna Springs into Action to Take In Ukrainian Students","u":"https://www.lubavitch.com/vienna-springs-into-action-to-take-in-ukrainian-students/"},{"t":"New 770 Replica to Serve as Innovative Headquarters for Chabad of Illinois","u":"https://www.lubavitch.com/new-770-replica-to-serve-as-innovative-headquarters-for-chabad-of-illinois/"},{"t":"Massive Pesach Seders Welcome Refugees Across Europe","u":"https://www.lubavitch.com/massive-pesach-seders-welcome-refugees-across-europe/"},{"t":"Paris, Mexico, and Gresham, Oregon","u":"https://www.lubavitch.com/paris-mexico-and-gresham-oregon/"},{"t":"A Quarter Million Meals From Chabad of Nigeria","u":"https://www.lubavitch.com/a-quarter-million-meals-from-chabad-of-nigeria/"},{"t":"Rabbi Yehuda Krinsky Visits Ukrainian Orphans","u":"https://www.lubavitch.com/rabbi-yehuda-krinsky-visits-ukrainian-orphans/"},{"t":"Lisbon Conference Evokes Memories For Chabad Emissaries","u":"https://www.lubavitch.com/lisbon-conference-evokes-memories-for-chabad-emissaries/"},{"t":"Young North American Jews Bond on Volcano Getaway","u":"https://www.lubavitch.com/young-american-jews-bond-on-volcano-getaway/"},{"t":"Rifka\u2019s Hot & Cold Journey to Judaism","u":"https://www.lubavitch.com/rifkas-hot-cold-journey-to-judaism/"},{"t":"Rabbi Moscowitz Returns to Wartorn Kharkiv","u":"https://www.lubavitch.com/rabbi-moscowitz-returns-to-wartorn-kharkiv/"},{"t":"Good Deeds for Daniel Perelman","u":"https://www.lubavitch.com/good-deeds-for-daniel-perelman/"},{"t":"A Jewish Burial Ensured for a Jew from Chengdu, China","u":"https://www.lubavitch.com/a-jewish-burial-ensured-for-a-jew-from-chengdu-china/"},{"t":"The Perfect Verb","u":"https://www.lubavitch.com/the-perfect-verb/"},{"t":"Two Boys Cross Front Line of Ukraine War to Rejoin Friends","u":"https://www.lubavitch.com/two-boys-cross-front-line-of-ukraine-war-to-rejoin-friends/"},{"t":"The Long Way Around","u":"https://www.lubavitch.com/the-long-way-around/"},{"t":"Almonds?! From Aaron\u2019s Staff?","u":"https://www.lubavitch.com/almonds-from-aarons-staff/"},{"t":"Chabad Camps Surge Past Pre-COVID Numbers","u":"https://www.lubavitch.com/chabad-camps-surge-past-pre-covid-numbers/"},{"t":"Nourishing Souls in Laguna Niguel One at a Time","u":"https://www.lubavitch.com/nourishing-souls-in-laguna-niguel-one-at-a-time/"},{"t":"Against All Odds, Kharkiv Jewish Community Welcomes a New Member","u":"https://www.lubavitch.com/against-all-odds-kharkiv-jewish-community-welcomes-a-new-member/"},{"t":"Chabad Comes to the Jungles of S. Teresa, Costa Rica","u":"https://www.lubavitch.com/chabad-comes-to-the-jungles-of-s-teresa-costa-rica/"},{"t":"Second-Oldest Building in Finland is Chabad\u2019s Newest Center","u":"https://www.lubavitch.com/second-oldest-building-in-finland-is-chabads-newest-center/"},{"t":"El Paso Independent School District Becomes First to Adopt \u2018ARK\u2019","u":"https://www.lubavitch.com/el-paso-independent-school-district-becomes-first-to-adopt-ark/"},{"t":"Bar Mitzvah Lessons, 21st-Century Edition","u":"https://www.lubavitch.com/bar-mitzvah-lessons-21st-century-edition/"},{"t":"Kids Roll Up Their Sleeves and Learn Judaism at New JCrafts Center","u":"https://www.lubavitch.com/kids-roll-up-their-sleeves-and-learn-judaism-at-new-jcrafts-center/"},{"t":"It\u2019s the Going There, Not the Getting There","u":"https://www.lubavitch.com/its-the-going-there-not-the-getting-there/"},{"t":"Jeff Brought Chabad to Guelph, Now It Carries His Name","u":"https://www.lubavitch.com/jeff-brought-chabad-to-guelph-now-it-carries-his-name/"},{"t":"Chabad of Illinois\u2019 \u201cFirst Responders\u201d Prepare to Confront Mental Health Crisis","u":"https://www.lubavitch.com/chabad-of-illinois-first-responders-prepare-to-confront-mental-health-crisis/"},{"t":"Tisha B\u2019Av and Mount Nebo","u":"https://www.lubavitch.com/tisha-bav-and-mount-nebo/"},{"t":"Triple the Numbers! CTeen Summer Inspires Jewish Pride for Public School Students","u":"https://www.lubavitch.com/triple-the-numbers-cteen-summer-inspires-jewish-pride-for-public-school-students/"},{"t":"The Evening Shema: The Perfect Place to Begin","u":"https://www.lubavitch.com/the-evening-shema-the-perfect-place-to-begin/"},{"t":"Georgia Native Returns as Chabad Rabbi","u":"https://www.lubavitch.com/georgia-native-returns-as-chabad-rabbi/"},{"t":"Trailblazing Former CTeener to Open Innovative Atlanta CTeen Center","u":"https://www.lubavitch.com/trailblazing-former-cteener-open-innovative-atlanta-cteen-center/"},{"t":"A Jewish Community Unites, Celebrates Jewish Life at Akron Family Festival","u":"https://www.lubavitch.com/a-jewish-community-unites-celebrates-jewish-life-at-akron-family-festival/"},{"t":"After Fire Destroys Delaware Student Center, Chabad Builds Eight Times Bigger","u":"https://www.lubavitch.com/after-fire-destroys-delaware-student-center-chabad-builds-eight-times-bigger/"},{"t":"Marching to the Song of Victory","u":"https://www.lubavitch.com/marching-to-the-song-of-victory/"},{"t":"Israeli Terror Victim Teens Gifted Tefillin and Shabbat Candlesticks on Canadian Trip","u":"https://www.lubavitch.com/israeli-terror-victim-teens-gifted-tefillin-and-shabbat-candlesticks-on-canadian-trip/"},{"t":"Young Professional Keeps Her First Shabbat On \u201cCYP Encounter\u201d in Panama City","u":"https://www.lubavitch.com/young-professional-keeps-her-first-shabbat-on-cyp-encounter-in-panama-city/"},{"t":"No Muzzles in the Field of Life","u":"https://www.lubavitch.com/no-muzzles-in-the-field-of-life/"},{"t":"Russia\u2019s Rabbis Issue Joint Resolution at Emergency Conference in Moscow","u":"https://www.lubavitch.com/russias-rabbis-issue-joint-resolution-at-emergency-conference-in-moscow/"},{"t":"The Cryptography of Blessings","u":"https://www.lubavitch.com/the-cryptography-of-blessings/"},{"t":"Historic Moment for Jewish Life and Leadership","u":"https://www.lubavitch.com/historic-moment-for-jewish-life-and-leadership/"},{"t":"To Grow or to Give?","u":"https://www.lubavitch.com/to-grow-or-to-give/"},{"t":"Chabad of Puerto Rico Preps for New Year While Delivering Post-Hurricane Aid","u":"https://www.lubavitch.com/chabad-of-puerto-rico-preps-for-new-year-while-delivering-post-hurricane-aid/"},{"t":"Chabad Centers Gear Up for Relief Efforts in Hurricane-Battered West Florida","u":"https://www.lubavitch.com/chabad-centers-gear-up-for-relief-efforts-in-hurricane-battered-west-florida/"},{"t":"Holidays after the Hurricane: Chabad of Cape Coral Observes Yom Kippur","u":"https://www.lubavitch.com/holidays-after-the-hurricane-chabad-of-cape-coral-observes-yom-kippur/"},{"t":"Jewish Community and Culture Comes to Life in Martha\u2019s Vineyard","u":"https://www.lubavitch.com/jewish-community-and-culture-comes-to-life-in-marthas-vineyard/"},{"t":"After Joyous Sukkot, Long Road Ahead for Fort Myers Jewish Community","u":"https://www.lubavitch.com/after-joyous-sukkot-long-road-ahead-for-fort-myers-jewish-community/"},{"t":"A Rabbi, a State Senator, and Seven Hundred Winter Coats for Ukrainian Orphans","u":"https://www.lubavitch.com/a-rabbi-a-state-senator-and-seven-hundred-winter-coats-for-ukrainian-orphans/"},{"t":"Kenosha, Wisconsin, Gets New Jewish Home in Stunning Turnaround","u":"https://www.lubavitch.com/kenosha-wisconsin-gets-new-jewish-home-in-stunning-turnaround/"},{"t":"Celebrating Gains in Jewish Life at Largest Ever Chabad Conference","u":"https://www.lubavitch.com/celebrating-gains-in-jewish-life-at-largest-chabad-conference/"},{"t":"From Small Beginnings, Chabad Builds Big in S. Mateo, California","u":"https://www.lubavitch.com/from-small-beginnings-chabad-builds-big-in-s-mateo-california/"},{"t":"A Jewish Community Life Sprouts in Elk Grove, California","u":"https://www.lubavitch.com/a-jewish-community-life-sprouts-in-elk-grove-california/"},{"t":"Chabad of Puerto Rico Celebrates 25 Years","u":"https://www.lubavitch.com/chabad-of-puerto-rico-celebrates-25-years/"},{"t":"Small, Scrappy, Innovative: Hebrew School 3.0","u":"https://www.lubavitch.com/small-scrappy-innovative-hebrew-school-3-0/"},{"t":"Hebrew School Hits the Road","u":"https://www.lubavitch.com/hebrew-school-hits-the-road/"},{"t":"Preschools","u":"#"}]},{"c":"Merkos L\u2019Inyonei Chinuch","size":"large","t":[{"t":"CKids Mezuzah Bank Promotes Mivtza Mezuzah in Camps","u":"https://collive.com/ckids-mezuzah-bank-promotes-mivtza-mezuzah-in-camps/"},{"t":"MyShliach Yeshivas Erev Expands to 15 Countries","u":"https://collive.com/myshliach-yeshivas-erev-expands-to-15-countries/"},{"t":"CTeen, Chabad on Campus Team Up to Welcome Students at College","u":"https://collive.com/cteen-chabad-on-campus-team-up-to-welcome-college-students/"},{"t":"Rabbi Kotlarsky Calls Ukraine Shluchim, Offering Relief","u":"https://collive.com/rabbi-kotlarsky-calls-ukraine-shluchim-offering-relief/"},{"t":"Despite Challenges, Merkos Menorahs Arrive in the US","u":"https://collive.com/despite-challenges-merkos-menorahs-arrive-in-the-us/"},{"t":"This 28 Nissan, Join the 24 Hour Virtual Farbrengen","u":"https://collive.com/this-28-nissan-join-the-24-hour-virtual-farbrengen/"},{"t":"Heads of Mosdos to Farbreng at 28 Nissan Virtual Event","u":"https://collive.com/heads-of-mosdos-to-farbreng-at-28-nissan-virtual-event/"},{"t":"Business Leaders, Doctors To Address Mega-Farbrengen","u":"https://collive.com/business-leaders-doctors-to-address-mega-farbrengen/"},{"t":"Rabbi Yitzi Hurwitz to Keynote 28 Nissan Virtual Event","u":"https://collive.com/rabbi-yitzi-hurwitz-to-keynote-28-nissan-virtual-event/"},{"t":"Short Film Inspires Hundreds of \u2018Influencers\u2019","u":"https://collive.com/short-film-inspires-hundreds-of-influencers/"},{"t":"Teens Share Their Stories at Inspiring Finale Event","u":"https://collive.com/teens-share-their-stories-at-inspiring-finale-event/"},{"t":"CTeen, Chabad on Campus Team Up to Welcome Students at College","u":"https://collive.com/cteen-chabad-on-campus-team-up-to-welcome-college-students/"},{"t":"Thousands of Children Rally for Ukrainian Jewry","u":"https://collive.com/thousands-of-children-rally-for-ukrainian-jewry/"},{"t":"Western Shluchim Convene for Regional Kinus","u":"https://collive.com/western-shluchim-convene-for-regional-kinus/"},{"t":"Ukrainian Refugees, Shluchim, Share Stories in Heartwarming Short Film","u":"https://collive.com/ukrainian-refugees-shluchim-share-stories-in-heartwarming-short-film/"},{"t":"Building on Record Success, CTeen Launches \u201cOrigin Trail\u201d Trip to Morocco","u":"https://merkos302.com/building-on-record-success-cteen-launches-origin-trail-trip-to-morocco/"},{"t":"Hamas Massacre Survivor Fights Back as CYP Mitzvah Ambassador","u":"https://anash.org/hamas-massacre-survivor-fights-back-as-cyp-mitzvah-ambassador/"},{"t":"Full-Day Kinus Seminar to Tackle Critical Contemporary Halachic Issues","u":"https://collive.com/full-day-kinus-seminar-to-tackle-critical-contemporary-halachic-issues/"},{"t":"2,500 Teens Headed to Crown Heights for CTeen Shabbaton","u":"https://collive.com/2500-teens-headed-to-crown-heights-for-cteen-shabbaton/"},{"t":"Tanya to Be Printed at CTeen Havdallah in Times Square","u":"https://collive.com/tanya-to-be-printed-at-cteen-havdallah-in-times-square/"}]},{"c":"JLI","size":"large","t":[{"t":"Kinus Mivtzah Torah Gives Shluchim Tools for Maximum Impact","u":"https://collive.com/kinus-mivtzah-torah-gives-shluchim-tools-for-maximum-impact/"},{"t":"National Jewish Retreat Looks Forward to Record Year","u":"https://collive.com/national-jewish-retreat-looks-forward-to-record-year/"},{"t":"The National Jewish Retreat is Headed to South Florida","u":"https://collive.com/the-national-jewish-retreat-is-headed-to-south-florida/"},{"t":"The Debate About the Exact Location of the Beis Hamikdash","u":"https://collive.com/the-debate-about-the-exact-location-of-the-beis-hamikdash/"},{"t":"National Jewish Retreat in Full Swing in Miami","u":"https://collive.com/national-jewish-retreat-in-full-swing-in-miami/"},{"t":"A Glimpse of This Summer\u2019s National Jewish Retreat","u":"https://collive.com/a-glimpse-of-this-summers-national-jewish-retreat/"},{"t":"Surfside Survivors & Heroes Reunite at National Jewish Retreat","u":"https://collive.com/surfside-survivors-heroes-reunite-at-national-jewish-retreat/"},{"t":"How Two Immigrants Changed Jewish Life in Florida","u":"https://collive.com/how-two-immigrants-changed-jewish-life-in-florida/"},{"t":"Torah Studies Program Expands on 18th Anniversary","u":"https://collive.com/torah-studies-program-expands-on-18th-anniversary/"},{"t":"Shabbat In the Heights Opens Registration for 5783","u":"https://collive.com/shabbat-in-the-heights-opens-registration-for-5783/"},{"t":"Chabad and JLI Bring High Holiday Inspiration to Ukraine","u":"https://collive.com/chabad-and-jli-bring-high-holiday-inspiration-to-ukraine/"},{"t":"Shluchim Armed to Teach Rashi Sichos Like Never Before","u":"https://collive.com/shluchim-armed-to-teach-rashi-sichos-like-never-before/"},{"t":"JLI\u2019s Living Haggadah Features Illustrated Infographics","u":"https://collive.com/jlis-living-haggadah-features-illustrated-infographics/"},{"t":"JLI Unveils Booklet for the Yizkor Service","u":"https://collive.com/jli-unveils-booklet-for-the-yizkor-service/"},{"t":"JLI Releases Guidebook: \u201cHow to Lead a Passover Seder\u201d","u":"https://collive.com/jli-releases-new-guidebook-how-to-lead-a-passover-seder/"},{"t":"Kehot and JLI Present The Living Haggadah: Seder Roadmap for Growth","u":"https://collive.com/kehot-and-jli-present-the-living-haggadah-seder-roadmap-for-growth/"},{"t":"\u201cGame-Changer\u201d: Shluchim Tout JLI\u2019s New Living Jewish Series","u":"https://collive.com/game-changer-shluchim-tout-jlis-new-living-jewish-series/"},{"t":"This Hey Teves, You Can Master Hilchos Kashrus for $35","u":"https://collive.com/this-hey-teves-you-can-master-hilchos-kashrus-for-35/"},{"t":"Rabbonim Praise JLI\u2019s Pioneering Kashrus Sefer","u":"https://collive.com/rabbonim-praise-jlis-pioneering-kashrus-sefer/"},{"t":"The Definitive Book on Kashrus for Every Lubavitch Home","u":"https://collive.com/the-definitive-book-on-kashrus-for-every-lubavitch-home/"},{"t":"First Look at JLI\u2019s Biggest Project to Date","u":"https://collive.com/first-look-at-jlis-biggest-project-to-date/"},{"t":"600 Shluchim to Teach New JLI Crash Course on Gemara","u":"https://collive.com/600-shluchim-to-teach-new-jli-crash-course-on-gemara/"},{"t":"American Jews Turn Out in Droves for \u2018How Israel Wins\u2019","u":"https://collive.com/american-jews-turn-out-in-droves-for-how-israel-wins/"}]},{"c":"Ishay Ribo","size":"small","t":[{"t":"Ishay Ribo Releases Soul-Stirring Performance From Historic Madison Square Garden Concert","u":"https://jewishlink.news/ishay-ribo-releases-soul-stirring-performance-from-historic-madison-square-garden-concert/"},{"t":"Ishay Ribo\u2019s personal message to Madison Square Garden concert-goers","u":"https://www.israelnationalnews.com/news/395963"},{"t":"Ishay Ribo Headlines Second Sold-Out MSG Concert","u":"https://collive.com/ishay-ribo-headlines-second-sold-out-msg-concert/"},{"t":"Ishay Ribo\u2019s Madison Square Garden Debut Makes History","u":"https://jewishlink.news/ishay-ribos-madison-square-garden-debut-makes-history/"},{"t":"Ishay Ribo to Transform Upstate\u2019s Bethel Woods in Landmark Concert","u":"https://collive.com/ishay-ribo-to-transform-upstates-bethel-woods-in-a-landmark-concert/"},{"t":"Yamim Ba\u2019im: Landmark Jewish Music Festival in Upstate NY","u":"https://collive.com/yamim-baim-landmark-jewish-music-festival-in-upstate-ny/"}]},{"c":"Other","size":"small","t":[{"t":"Fascinated by the Rebbe\u2019s Torah","u":"https://issuu.com/collive.com/docs/collive_magazine_-_tammuz_5784"},{"t":"Tomchei Temimi of the Desert","u":"https://issuu.com/collive.com/docs/collive_magazine_elul_5784"},{"t":"Own It! - How Rabbi Ari Sollish of The Torah Center ATL Teaches Torah","u":"https://issuu.com/collive.com/docs/issue_31_--_sivan_5785/30"},{"t":"\"Koach Adir\" - Can AI help us learn and teach Chassidus?","u":"https://issuu.com/collive.com/docs/collive_magazine_-_elul_5785/12"},{"t":"After Devastating Fire, a New Home for Portland\u2019s Chabad School","u":"https://collive.com/after-devastating-fire-a-new-home-for-portlands-chabad-school/"},{"t":"A Year With Released Time Leads Brothers to Enroll in Yeshiva","u":"https://collive.com/a-year-with-released-time-leads-brothers-to-enroll-in-yeshiva/"},{"t":"New Artists Contest to Express Chassidus in Full Color","u":"https://collive.com/new-artists-contest-to-express-chassidus-in-full-color/"}]}]};
+// --- Paper Trail Data (flattened, no categories) ---
+var ALL_TITLES=[
+  {t:"\u2018Yossi Tenenboim Day\u2019 Celebrates Young Shliach\u2019s Bar Mitzvah",u:"https://www.lubavitch.com/yossi-tenenboim-day-celebrates-young-shliachs-bar-mitzvah/"},
+  {t:"A Canceled Bar Mitzvah, A Heartwarming Wave Of Support",u:"https://www.lubavitch.com/a-canceled-bar-mitzvah-a-heartwarming-wave-of-support/"},
+  {t:"World\u2019s Deepest Underground Synagogue Connects Material and Spiritual",u:"https://www.lubavitch.com/worlds-deepest-underground-synagogue-connects-material-and-spiritual/"},
+  {t:"July Game Changers: Bassie Shemtov",u:"https://www.lubavitch.com/july-game-changers-bassie-shemtov/"},
+  {t:"\u201cAggie Rabbi\u201d Answers Mid-Atlantic Call For Kosher Food",u:"https://www.lubavitch.com/aggie-rabbi-answers-mid-atlantic-call-for-kosher-food/"},
+  {t:"Jewish In Berlin And Scoring High",u:"https://www.lubavitch.com/jewish-in-berlin-and-scoring-high/"},
+  {t:"CTeens Bond, Connect to Their Judaism on Israel Heritage Quest",u:"https://www.lubavitch.com/cteens-bond-connect-to-their-judaism-on-israel-heritage-quest/"},
+  {t:"Torah Scrolls Stolen, Synagogue Vandalized at Chabad of Long Beach",u:"https://www.lubavitch.com/torah-scrolls-stolen-synagogue-vandalized-at-chabad-of-long-beach/"},
+  {t:"Chabad Community in Louisiana Braces for Hurricane Ida",u:"https://www.lubavitch.com/chabad-community-in-louisiana-braces-for-hurricane-ida/"},
+  {t:"Children\u2019s Book Turns Personal Tragedy Into Communal Healing",u:"https://www.lubavitch.com/childrens-book-turns-personal-tragedy-into-communal-healing/"},
+  {t:"Record Numbers to Hear Shofar in the Parks",u:"https://www.lubavitch.com/record-numbers-to-hear-shofar-in-the-parks/"},
+  {t:"Recovery Community Celebrates Opening of Chabad Center",u:"https://www.lubavitch.com/recovery-community-celebrates-opening-of-chabad-center/"},
+  {t:"An Out-of-the-Box Way to Celebrate in the Sukkah",u:"https://www.lubavitch.com/an-out-of-the-box-way-to-celebrate-in-the-sukkah/"},
+  {t:"Restoration of Historic Russian Synagogue Begins",u:"https://www.lubavitch.com/restoration-of-historic-russian-synagogue-begins/"},
+  {t:"Tomsk Educational Center Heralds Jewish Renewal",u:"https://www.lubavitch.com/tomsk-educational-center-heralds-jewish-renewal/"},
+  {t:"Last-Minute Drive-Through Show Inspires Argentinian Community",u:"https://www.lubavitch.com/chabad-of-argentina-races-to-inspire-with-drive-through-show/"},
+  {t:"International Conference Of Chabad Emissaries Begins",u:"https://www.lubavitch.com/international-conference-of-chabad-emissaries-begins/"},
+  {t:"Desert Wedding Seals a Year of Torah Learning for Young Eastern European Jews",u:"https://www.lubavitch.com/desert-wedding-seals-a-year-of-torah-learning-for-young-eastern-european-jews/"},
+  {t:"Grand Jewish Educational Center Underway in Buenos Aires",u:"https://www.lubavitch.com/grand-jewish-educational-center-underway-in-buenos-aires/"},
+  {t:"Miniature \u201cPegisha\u201d Draws Four Hundred To Brooklyn",u:"https://www.lubavitch.com/miniature-pegisha-draws-four-hundred-to-brooklyn/"},
+  {t:"Helicopters, Firetrucks, and Menorahs - Oh My!",u:"https://www.lubavitch.com/helicopters-firetrucks-and-menorahs-oh-my/"},
+  {t:"NYC Mayor-Elect in Ghana Joins Chabad for Menorah Lighting",u:"https://www.lubavitch.com/nyc-mayor-elect-in-ghana-joins-chabad-for-menorah-lighting/"},
+  {t:"Community Building in Cabo S. Lucas",u:"https://www.lubavitch.com/community-building-in-cabo-s-lucas/"},
+  {t:"Unknown Jewish Man Receives Full Jewish Burial",u:"https://www.lubavitch.com/unknown-jewish-man-receives-full-jewish-burial/"},
+  {t:"Chabad Rushes Water and Warm Clothing to Tornado Victims",u:"https://www.lubavitch.com/chabad-rushes-water-and-warm-clothing-to-tornado-victims/"},
+  {t:"Flying Food To Canadian Flood Victims",u:"https://www.lubavitch.com/flying-food-to-canadian-flood-victims/"},
+  {t:"A Traditional Revolution",u:"https://www.lubavitch.com/a-traditional-revolution/"},
+  {t:"Texas Ten Talkers Dig Deep",u:"https://www.lubavitch.com/texas-ten-talkers-dig-deep/"},
+  {t:"Amid Kazakhstan Bloodshed, Jewish Community Prays for Peace",u:"https://www.lubavitch.com/amid-kazakhstan-bloodshed-jewish-community-prays-for-peace/"},
+  {t:"Paths Through The Sea",u:"https://www.lubavitch.com/paths-through-the-sea/"},
+  {t:"Wounded Warriors Bring Jewish Pride To Campus",u:"https://www.lubavitch.com/wounded-warriors-bring-jewish-pride-to-campus/"},
+  {t:"Young Professionals Dive Into A Brooklyn Shabbos",u:"https://www.lubavitch.com/young-professionals-dive-into-a-brooklyn-shabbos/"},
+  {t:"Hybrid Conference Of Chabad Lubavitch Shluchos Begins",u:"https://www.lubavitch.com/hybrid-conference-of-chabad-lubavitch-shluchos-begins/"},
+  {t:"Spiritual Hierarchy Or Anarchy?",u:"https://www.lubavitch.com/spiritual-hierarchy-or-anarchy/"},
+  {t:"Uninterested, But Caring",u:"https://www.lubavitch.com/uninterested-but-caring/"},
+  {t:"How To Host A King",u:"https://www.lubavitch.com/how-to-host-a-king/"},
+  {t:"Hot Meals For Rostov\u2019s Isolated Elders",u:"https://www.lubavitch.com/hot-meals-for-rostovs-isolated-elders/"},
+  {t:"Population Boom Brings Fourth Chabad Couple to Montana",u:"https://www.lubavitch.com/population-boom-brings-fourth-chabad-couple-to-montana/"},
+  {t:"Moses Lighting the Menorah?!",u:"https://www.lubavitch.com/moses-lighting-the-menorah/"},
+  {t:"From Dealing Drugs To Writing Scrolls",u:"https://www.lubavitch.com/from-dealing-drugs-to-writing-scrolls/"},
+  {t:"Two Counts, One Number",u:"https://www.lubavitch.com/two-counts-one-number/"},
+  {t:"Happiness is Next to Kindness",u:"https://www.lubavitch.com/happiness-is-next-to-kindness/"},
+  {t:"CTeen Shabbaton Brings 2,500 to New York",u:"https://www.lubavitch.com/cteen-shabbaton-brings-2500-to-new-york/"},
+  {t:"Students Surprise Refugees with Busload of Food",u:"https://www.lubavitch.com/students-surprise-refugees-with-busload-of-food/"},
+  {t:"New Orleans Kicks Off Fourth Generation of Chabad Outreach",u:"https://www.lubavitch.com/new-orleans-kicks-off-fourth-generation-of-chabad-outreach/"},
+  {t:"Yeka Counselors Drop Everything to Be With Ukrainian Campers",u:"https://www.lubavitch.com/yeka-counselors-drop-everything-to-be-with-ukrainian-campers/"},
+  {t:"110 Schoolchildren Show Off Jewish Knowledge at Championship Game Show",u:"https://www.lubavitch.com/110-schoolchildren-show-off-jewish-knowledge-at-championship-game-show/"},
+  {t:"Sivan Rahav Meir Interviews Rabbi Shlomo Peles",u:"https://www.lubavitch.com/sivan-rahav-meir-interviews-rabbi-shlomo-peles/"},
+  {t:"California Rabbi & Ohio Trucker Rescue Paralyzed Grandmother in Ukraine",u:"https://www.lubavitch.com/california-rabbi-ohio-trucker-rescue-paralyzed-grandmother-in-ukraine/"},
+  {t:"Aleph Rescues Afghans from Taliban",u:"https://www.lubavitch.com/aleph-rescues-afghans-from-taliban/"},
+  {t:"Meeting Jews and Making Moves in Minnesota",u:"https://www.lubavitch.com/meeting-jews-and-making-moves-in-minnesota/"},
+  {t:"Congress Honors Lubavitcher Rebbe at Washington DC Conference",u:"https://www.lubavitch.com/congress-honors-lubavitcher-rebbe-at-washington-dc-conference/"},
+  {t:"Vienna Springs into Action to Take In Ukrainian Students",u:"https://www.lubavitch.com/vienna-springs-into-action-to-take-in-ukrainian-students/"},
+  {t:"New 770 Replica to Serve as Innovative Headquarters for Chabad of Illinois",u:"https://www.lubavitch.com/new-770-replica-to-serve-as-innovative-headquarters-for-chabad-of-illinois/"},
+  {t:"Massive Pesach Seders Welcome Refugees Across Europe",u:"https://www.lubavitch.com/massive-pesach-seders-welcome-refugees-across-europe/"},
+  {t:"Paris, Mexico, and Gresham, Oregon",u:"https://www.lubavitch.com/paris-mexico-and-gresham-oregon/"},
+  {t:"A Quarter Million Meals From Chabad of Nigeria",u:"https://www.lubavitch.com/a-quarter-million-meals-from-chabad-of-nigeria/"},
+  {t:"Rabbi Yehuda Krinsky Visits Ukrainian Orphans",u:"https://www.lubavitch.com/rabbi-yehuda-krinsky-visits-ukrainian-orphans/"},
+  {t:"Lisbon Conference Evokes Memories For Chabad Emissaries",u:"https://www.lubavitch.com/lisbon-conference-evokes-memories-for-chabad-emissaries/"},
+  {t:"Young North American Jews Bond on Volcano Getaway",u:"https://www.lubavitch.com/young-american-jews-bond-on-volcano-getaway/"},
+  {t:"Rifka\u2019s Hot & Cold Journey to Judaism",u:"https://www.lubavitch.com/rifkas-hot-cold-journey-to-judaism/"},
+  {t:"Rabbi Moscowitz Returns to Wartorn Kharkiv",u:"https://www.lubavitch.com/rabbi-moscowitz-returns-to-wartorn-kharkiv/"},
+  {t:"Good Deeds for Daniel Perelman",u:"https://www.lubavitch.com/good-deeds-for-daniel-perelman/"},
+  {t:"A Jewish Burial Ensured for a Jew from Chengdu, China",u:"https://www.lubavitch.com/a-jewish-burial-ensured-for-a-jew-from-chengdu-china/"},
+  {t:"The Perfect Verb",u:"https://www.lubavitch.com/the-perfect-verb/"},
+  {t:"Two Boys Cross Front Line of Ukraine War to Rejoin Friends",u:"https://www.lubavitch.com/two-boys-cross-front-line-of-ukraine-war-to-rejoin-friends/"},
+  {t:"The Long Way Around",u:"https://www.lubavitch.com/the-long-way-around/"},
+  {t:"Almonds?! From Aaron\u2019s Staff?",u:"https://www.lubavitch.com/almonds-from-aarons-staff/"},
+  {t:"Chabad Camps Surge Past Pre-COVID Numbers",u:"https://www.lubavitch.com/chabad-camps-surge-past-pre-covid-numbers/"},
+  {t:"Nourishing Souls in Laguna Niguel One at a Time",u:"https://www.lubavitch.com/nourishing-souls-in-laguna-niguel-one-at-a-time/"},
+  {t:"Against All Odds, Kharkiv Jewish Community Welcomes a New Member",u:"https://www.lubavitch.com/against-all-odds-kharkiv-jewish-community-welcomes-a-new-member/"},
+  {t:"Chabad Comes to the Jungles of S. Teresa, Costa Rica",u:"https://www.lubavitch.com/chabad-comes-to-the-jungles-of-s-teresa-costa-rica/"},
+  {t:"Second-Oldest Building in Finland is Chabad\u2019s Newest Center",u:"https://www.lubavitch.com/second-oldest-building-in-finland-is-chabads-newest-center/"},
+  {t:"El Paso Independent School District Becomes First to Adopt \u2018ARK\u2019",u:"https://www.lubavitch.com/el-paso-independent-school-district-becomes-first-to-adopt-ark/"},
+  {t:"Bar Mitzvah Lessons, 21st-Century Edition",u:"https://www.lubavitch.com/bar-mitzvah-lessons-21st-century-edition/"},
+  {t:"Kids Roll Up Their Sleeves and Learn Judaism at New JCrafts Center",u:"https://www.lubavitch.com/kids-roll-up-their-sleeves-and-learn-judaism-at-new-jcrafts-center/"},
+  {t:"It\u2019s the Going There, Not the Getting There",u:"https://www.lubavitch.com/its-the-going-there-not-the-getting-there/"},
+  {t:"Jeff Brought Chabad to Guelph, Now It Carries His Name",u:"https://www.lubavitch.com/jeff-brought-chabad-to-guelph-now-it-carries-his-name/"},
+  {t:"Chabad of Illinois\u2019 \u201cFirst Responders\u201d Prepare to Confront Mental Health Crisis",u:"https://www.lubavitch.com/chabad-of-illinois-first-responders-prepare-to-confront-mental-health-crisis/"},
+  {t:"Tisha B\u2019Av and Mount Nebo",u:"https://www.lubavitch.com/tisha-bav-and-mount-nebo/"},
+  {t:"Triple the Numbers! CTeen Summer Inspires Jewish Pride for Public School Students",u:"https://www.lubavitch.com/triple-the-numbers-cteen-summer-inspires-jewish-pride-for-public-school-students/"},
+  {t:"The Evening Shema: The Perfect Place to Begin",u:"https://www.lubavitch.com/the-evening-shema-the-perfect-place-to-begin/"},
+  {t:"Georgia Native Returns as Chabad Rabbi",u:"https://www.lubavitch.com/georgia-native-returns-as-chabad-rabbi/"},
+  {t:"Trailblazing Former CTeener to Open Innovative Atlanta CTeen Center",u:"https://www.lubavitch.com/trailblazing-former-cteener-open-innovative-atlanta-cteen-center/"},
+  {t:"A Jewish Community Unites, Celebrates Jewish Life at Akron Family Festival",u:"https://www.lubavitch.com/a-jewish-community-unites-celebrates-jewish-life-at-akron-family-festival/"},
+  {t:"After Fire Destroys Delaware Student Center, Chabad Builds Eight Times Bigger",u:"https://www.lubavitch.com/after-fire-destroys-delaware-student-center-chabad-builds-eight-times-bigger/"},
+  {t:"Marching to the Song of Victory",u:"https://www.lubavitch.com/marching-to-the-song-of-victory/"},
+  {t:"Israeli Terror Victim Teens Gifted Tefillin and Shabbat Candlesticks on Canadian Trip",u:"https://www.lubavitch.com/israeli-terror-victim-teens-gifted-tefillin-and-shabbat-candlesticks-on-canadian-trip/"},
+  {t:"Young Professional Keeps Her First Shabbat On \u201cCYP Encounter\u201d in Panama City",u:"https://www.lubavitch.com/young-professional-keeps-her-first-shabbat-on-cyp-encounter-in-panama-city/"},
+  {t:"No Muzzles in the Field of Life",u:"https://www.lubavitch.com/no-muzzles-in-the-field-of-life/"},
+  {t:"Russia\u2019s Rabbis Issue Joint Resolution at Emergency Conference in Moscow",u:"https://www.lubavitch.com/russias-rabbis-issue-joint-resolution-at-emergency-conference-in-moscow/"},
+  {t:"The Cryptography of Blessings",u:"https://www.lubavitch.com/the-cryptography-of-blessings/"},
+  {t:"Historic Moment for Jewish Life and Leadership",u:"https://www.lubavitch.com/historic-moment-for-jewish-life-and-leadership/"},
+  {t:"To Grow or to Give?",u:"https://www.lubavitch.com/to-grow-or-to-give/"},
+  {t:"Chabad of Puerto Rico Preps for New Year While Delivering Post-Hurricane Aid",u:"https://www.lubavitch.com/chabad-of-puerto-rico-preps-for-new-year-while-delivering-post-hurricane-aid/"},
+  {t:"Chabad Centers Gear Up for Relief Efforts in Hurricane-Battered West Florida",u:"https://www.lubavitch.com/chabad-centers-gear-up-for-relief-efforts-in-hurricane-battered-west-florida/"},
+  {t:"Holidays after the Hurricane: Chabad of Cape Coral Observes Yom Kippur",u:"https://www.lubavitch.com/holidays-after-the-hurricane-chabad-of-cape-coral-observes-yom-kippur/"},
+  {t:"Jewish Community and Culture Comes to Life in Martha\u2019s Vineyard",u:"https://www.lubavitch.com/jewish-community-and-culture-comes-to-life-in-marthas-vineyard/"},
+  {t:"After Joyous Sukkot, Long Road Ahead for Fort Myers Jewish Community",u:"https://www.lubavitch.com/after-joyous-sukkot-long-road-ahead-for-fort-myers-jewish-community/"},
+  {t:"A Rabbi, a State Senator, and Seven Hundred Winter Coats for Ukrainian Orphans",u:"https://www.lubavitch.com/a-rabbi-a-state-senator-and-seven-hundred-winter-coats-for-ukrainian-orphans/"},
+  {t:"Kenosha, Wisconsin, Gets New Jewish Home in Stunning Turnaround",u:"https://www.lubavitch.com/kenosha-wisconsin-gets-new-jewish-home-in-stunning-turnaround/"},
+  {t:"Celebrating Gains in Jewish Life at Largest Ever Chabad Conference",u:"https://www.lubavitch.com/celebrating-gains-in-jewish-life-at-largest-chabad-conference/"},
+  {t:"From Small Beginnings, Chabad Builds Big in S. Mateo, California",u:"https://www.lubavitch.com/from-small-beginnings-chabad-builds-big-in-s-mateo-california/"},
+  {t:"A Jewish Community Life Sprouts in Elk Grove, California",u:"https://www.lubavitch.com/a-jewish-community-life-sprouts-in-elk-grove-california/"},
+  {t:"Chabad of Puerto Rico Celebrates 25 Years",u:"https://www.lubavitch.com/chabad-of-puerto-rico-celebrates-25-years/"},
+  {t:"Small, Scrappy, Innovative: Hebrew School 3.0",u:"https://www.lubavitch.com/small-scrappy-innovative-hebrew-school-3-0/"},
+  {t:"Hebrew School Hits the Road",u:"https://www.lubavitch.com/hebrew-school-hits-the-road/"},
+  {t:"CKids Mezuzah Bank Promotes Mivtza Mezuzah in Camps",u:"https://collive.com/ckids-mezuzah-bank-promotes-mivtza-mezuzah-in-camps/"},
+  {t:"MyShliach Yeshivas Erev Expands to 15 Countries",u:"https://collive.com/myshliach-yeshivas-erev-expands-to-15-countries/"},
+  {t:"CTeen, Chabad on Campus Team Up to Welcome Students at College",u:"https://collive.com/cteen-chabad-on-campus-team-up-to-welcome-college-students/"},
+  {t:"Rabbi Kotlarsky Calls Ukraine Shluchim, Offering Relief",u:"https://collive.com/rabbi-kotlarsky-calls-ukraine-shluchim-offering-relief/"},
+  {t:"Despite Challenges, Merkos Menorahs Arrive in the US",u:"https://collive.com/despite-challenges-merkos-menorahs-arrive-in-the-us/"},
+  {t:"This 28 Nissan, Join the 24 Hour Virtual Farbrengen",u:"https://collive.com/this-28-nissan-join-the-24-hour-virtual-farbrengen/"},
+  {t:"Heads of Mosdos to Farbreng at 28 Nissan Virtual Event",u:"https://collive.com/heads-of-mosdos-to-farbreng-at-28-nissan-virtual-event/"},
+  {t:"Business Leaders, Doctors To Address Mega-Farbrengen",u:"https://collive.com/business-leaders-doctors-to-address-mega-farbrengen/"},
+  {t:"Rabbi Yitzi Hurwitz to Keynote 28 Nissan Virtual Event",u:"https://collive.com/rabbi-yitzi-hurwitz-to-keynote-28-nissan-virtual-event/"},
+  {t:"Short Film Inspires Hundreds of \u2018Influencers\u2019",u:"https://collive.com/short-film-inspires-hundreds-of-influencers/"},
+  {t:"Teens Share Their Stories at Inspiring Finale Event",u:"https://collive.com/teens-share-their-stories-at-inspiring-finale-event/"},
+  {t:"Thousands of Children Rally for Ukrainian Jewry",u:"https://collive.com/thousands-of-children-rally-for-ukrainian-jewry/"},
+  {t:"Western Shluchim Convene for Regional Kinus",u:"https://collive.com/western-shluchim-convene-for-regional-kinus/"},
+  {t:"Ukrainian Refugees, Shluchim, Share Stories in Heartwarming Short Film",u:"https://collive.com/ukrainian-refugees-shluchim-share-stories-in-heartwarming-short-film/"},
+  {t:"Building on Record Success, CTeen Launches \u201cOrigin Trail\u201d Trip to Morocco",u:"https://merkos302.com/building-on-record-success-cteen-launches-origin-trail-trip-to-morocco/"},
+  {t:"Hamas Massacre Survivor Fights Back as CYP Mitzvah Ambassador",u:"https://anash.org/hamas-massacre-survivor-fights-back-as-cyp-mitzvah-ambassador/"},
+  {t:"Full-Day Kinus Seminar to Tackle Critical Contemporary Halachic Issues",u:"https://collive.com/full-day-kinus-seminar-to-tackle-critical-contemporary-halachic-issues/"},
+  {t:"2,500 Teens Headed to Crown Heights for CTeen Shabbaton",u:"https://collive.com/2500-teens-headed-to-crown-heights-for-cteen-shabbaton/"},
+  {t:"Tanya to Be Printed at CTeen Havdallah in Times Square",u:"https://collive.com/tanya-to-be-printed-at-cteen-havdallah-in-times-square/"},
+  {t:"Kinus Mivtzah Torah Gives Shluchim Tools for Maximum Impact",u:"https://collive.com/kinus-mivtzah-torah-gives-shluchim-tools-for-maximum-impact/"},
+  {t:"National Jewish Retreat Looks Forward to Record Year",u:"https://collive.com/national-jewish-retreat-looks-forward-to-record-year/"},
+  {t:"The National Jewish Retreat is Headed to South Florida",u:"https://collive.com/the-national-jewish-retreat-is-headed-to-south-florida/"},
+  {t:"The Debate About the Exact Location of the Beis Hamikdash",u:"https://collive.com/the-debate-about-the-exact-location-of-the-beis-hamikdash/"},
+  {t:"National Jewish Retreat in Full Swing in Miami",u:"https://collive.com/national-jewish-retreat-in-full-swing-in-miami/"},
+  {t:"A Glimpse of This Summer\u2019s National Jewish Retreat",u:"https://collive.com/a-glimpse-of-this-summers-national-jewish-retreat/"},
+  {t:"Surfside Survivors & Heroes Reunite at National Jewish Retreat",u:"https://collive.com/surfside-survivors-heroes-reunite-at-national-jewish-retreat/"},
+  {t:"How Two Immigrants Changed Jewish Life in Florida",u:"https://collive.com/how-two-immigrants-changed-jewish-life-in-florida/"},
+  {t:"Torah Studies Program Expands on 18th Anniversary",u:"https://collive.com/torah-studies-program-expands-on-18th-anniversary/"},
+  {t:"Shabbat In the Heights Opens Registration for 5783",u:"https://collive.com/shabbat-in-the-heights-opens-registration-for-5783/"},
+  {t:"Chabad and JLI Bring High Holiday Inspiration to Ukraine",u:"https://collive.com/chabad-and-jli-bring-high-holiday-inspiration-to-ukraine/"},
+  {t:"Shluchim Armed to Teach Rashi Sichos Like Never Before",u:"https://collive.com/shluchim-armed-to-teach-rashi-sichos-like-never-before/"},
+  {t:"JLI\u2019s Living Haggadah Features Illustrated Infographics",u:"https://collive.com/jlis-living-haggadah-features-illustrated-infographics/"},
+  {t:"JLI Unveils Booklet for the Yizkor Service",u:"https://collive.com/jli-unveils-booklet-for-the-yizkor-service/"},
+  {t:"JLI Releases Guidebook: \u201cHow to Lead a Passover Seder\u201d",u:"https://collive.com/jli-releases-new-guidebook-how-to-lead-a-passover-seder/"},
+  {t:"Kehot and JLI Present The Living Haggadah: Seder Roadmap for Growth",u:"https://collive.com/kehot-and-jli-present-the-living-haggadah-seder-roadmap-for-growth/"},
+  {t:"\u201cGame-Changer\u201d: Shluchim Tout JLI\u2019s New Living Jewish Series",u:"https://collive.com/game-changer-shluchim-tout-jlis-new-living-jewish-series/"},
+  {t:"This Hey Teves, You Can Master Hilchos Kashrus for $35",u:"https://collive.com/this-hey-teves-you-can-master-hilchos-kashrus-for-35/"},
+  {t:"Rabbonim Praise JLI\u2019s Pioneering Kashrus Sefer",u:"https://collive.com/rabbonim-praise-jlis-pioneering-kashrus-sefer/"},
+  {t:"The Definitive Book on Kashrus for Every Lubavitch Home",u:"https://collive.com/the-definitive-book-on-kashrus-for-every-lubavitch-home/"},
+  {t:"First Look at JLI\u2019s Biggest Project to Date",u:"https://collive.com/first-look-at-jlis-biggest-project-to-date/"},
+  {t:"600 Shluchim to Teach New JLI Crash Course on Gemara",u:"https://collive.com/600-shluchim-to-teach-new-jli-crash-course-on-gemara/"},
+  {t:"American Jews Turn Out in Droves for \u2018How Israel Wins\u2019",u:"https://collive.com/american-jews-turn-out-in-droves-for-how-israel-wins/"},
+  {t:"Ishay Ribo Releases Soul-Stirring Performance From Historic Madison Square Garden Concert",u:"https://jewishlink.news/ishay-ribo-releases-soul-stirring-performance-from-historic-madison-square-garden-concert/"},
+  {t:"Ishay Ribo\u2019s personal message to Madison Square Garden concert-goers",u:"https://www.israelnationalnews.com/news/395963"},
+  {t:"Ishay Ribo Headlines Second Sold-Out MSG Concert",u:"https://collive.com/ishay-ribo-headlines-second-sold-out-msg-concert/"},
+  {t:"Ishay Ribo\u2019s Madison Square Garden Debut Makes History",u:"https://jewishlink.news/ishay-ribos-madison-square-garden-debut-makes-history/"},
+  {t:"Ishay Ribo to Transform Upstate\u2019s Bethel Woods in Landmark Concert",u:"https://collive.com/ishay-ribo-to-transform-upstates-bethel-woods-in-a-landmark-concert/"},
+  {t:"Yamim Ba\u2019im: Landmark Jewish Music Festival in Upstate NY",u:"https://collive.com/yamim-baim-landmark-jewish-music-festival-in-upstate-ny/"},
+  {t:"Fascinated by the Rebbe\u2019s Torah",u:"https://issuu.com/collive.com/docs/collive_magazine_-_tammuz_5784"},
+  {t:"Tomchei Temimi of the Desert",u:"https://issuu.com/collive.com/docs/collive_magazine_elul_5784"},
+  {t:"Own It! - How Rabbi Ari Sollish of The Torah Center ATL Teaches Torah",u:"https://issuu.com/collive.com/docs/issue_31_--_sivan_5785/30"},
+  {t:"\"Koach Adir\" - Can AI help us learn and teach Chassidus?",u:"https://issuu.com/collive.com/docs/collive_magazine_-_elul_5785/12"},
+  {t:"After Devastating Fire, a New Home for Portland\u2019s Chabad School",u:"https://collive.com/after-devastating-fire-a-new-home-for-portlands-chabad-school/"},
+  {t:"A Year With Released Time Leads Brothers to Enroll in Yeshiva",u:"https://collive.com/a-year-with-released-time-leads-brothers-to-enroll-in-yeshiva/"},
+  {t:"New Artists Contest to Express Chassidus in Full Color",u:"https://collive.com/new-artists-contest-to-express-chassidus-in-full-color/"}
+];
 
-var bs=document.getElementById('broadsheet');
-TRAIL.groups.forEach(function(g){
-  var grp=document.createElement('div');
-  grp.className='grp grp-'+g.size+(g.size==='massive'?' grp-span-all':'');
-  var label=document.createElement('div');
-  label.className='grp-label';
-  label.textContent=g.c;
-  grp.appendChild(label);
-  var body=document.createElement('div');
-  body.className='grp-body';
-  g.t.forEach(function(a,i){
-    var link=document.createElement('a');
-    link.href=a.u;link.target='_blank';link.textContent=a.t;
-    var seed=(a.t.charCodeAt(0)+a.t.length+i)%6;
-    link.style.opacity=(0.4+seed*0.12).toFixed(2);
-    body.appendChild(link);
-    if(i<g.t.length-1){var d=document.createElement('span');d.className='d';body.appendChild(d);}
+// --- Build Paper Trail ---
+(function(){
+  var body=document.getElementById('trailBody');
+  var trailWrap=document.getElementById('trailWrap');
+
+  // Pre-build all elements in memory
+  var chunks=[];
+
+  ALL_TITLES.forEach(function(item,i){
+    var a=document.createElement('a');
+    a.href=item.u;
+    a.target='_blank';
+
+    var words=item.t.split(/\s+/);
+    words.forEach(function(word,wi){
+      var s=document.createElement('span');
+      s.textContent=word+(wi<words.length-1?' ':'');
+      chunks.push({node:s,linkEl:a,type:'word'});
+    });
+
+    if(i<ALL_TITLES.length-1){
+      var dot=document.createElement('span');
+      dot.className='dot';
+      dot.setAttribute('aria-hidden','true');
+      chunks.push({node:dot,linkEl:a,type:'dot'});
+    }
   });
-  grp.appendChild(body);bs.appendChild(grp);
-});
+
+  var linksInDom=new Set();
+
+  // Cursor
+  var cursorEl=document.createElement('span');
+  cursorEl.className='trail-cursor';
+  body.appendChild(cursorEl);
+
+  // Scroll distance
+  var scrollH=chunks.length*4+window.innerHeight;
+  trailWrap.style.height=scrollH+'px';
+
+  var hwm=-1;
+  var prevLink=null;
+  var done=false;
+
+  function getProgress(){
+    var rect=trailWrap.getBoundingClientRect();
+    var scrollable=trailWrap.offsetHeight-window.innerHeight;
+    if(scrollable<=0)return 0;
+    // Start typing when trail-wrap top reaches 50% of viewport
+    var offset=window.innerHeight*0.5;
+    return Math.max(0,Math.min(1,(offset-rect.top)/scrollable));
+  }
+
+  function render(){
+    if(done){requestAnimationFrame(render);return;}
+
+    var p=getProgress();
+    var target=Math.floor(p*chunks.length)-1;
+    if(p<=0)target=-1;
+    if(p>=1)target=chunks.length-1;
+
+    // One-way: only go forward
+    if(target>hwm){
+      for(var i=hwm+1;i<=target;i++){
+        var c=chunks[i];
+        if(c.type==='word'){
+          if(!linksInDom.has(c.linkEl)){
+            if(prevLink&&prevLink!==c.linkEl){
+              prevLink.classList.add('done');
+            }
+            body.insertBefore(c.linkEl,cursorEl);
+            linksInDom.add(c.linkEl);
+            prevLink=c.linkEl;
+          }
+          c.linkEl.appendChild(c.node);
+        } else {
+          body.insertBefore(c.node,cursorEl);
+          if(prevLink) prevLink.classList.add('done');
+        }
+      }
+      hwm=target;
+
+      // Keep cursor at consistent ~55% of visible area
+      var cursorOff=0;
+      var el=cursorEl;
+      while(el&&el!==body){cursorOff+=el.offsetTop;el=el.offsetParent;}
+      var visH=body.clientHeight;
+      var targetST=cursorOff-visH*0.55;
+      if(targetST<0)targetST=0;
+      body.scrollTop=targetST;
+    }
+
+    // Mark done and finalize with anchor-based scroll compensation
+    if(hwm>=chunks.length-1&&!done){
+      cursorEl.style.display='none';
+      if(prevLink) prevLink.classList.add('done');
+      done=true;
+
+      // Anchor: measure last link's visual position BEFORE any changes
+      var anchor=prevLink;
+      var beforeY=anchor?anchor.getBoundingClientRect().top:0;
+
+      // Release sticky and reveal all content
+      var sticky=trailWrap.querySelector('.trail-sticky');
+      sticky.style.position='relative';
+      sticky.style.height='auto';
+      body.style.flex='none';
+      body.style.overflow='visible';
+      body.style.paddingBottom='0';
+      body.scrollTop=0;
+      trailWrap.style.height='auto';
+
+      // Measure AFTER changes and compensate
+      if(anchor){
+        var afterY=anchor.getBoundingClientRect().top;
+        var diff=afterY-beforeY;
+        if(Math.abs(diff)>1){
+          window.scrollBy(0,diff);
+        }
+      }
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+})();
 </script>
 </body>
 </html>
